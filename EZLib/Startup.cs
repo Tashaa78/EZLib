@@ -48,35 +48,35 @@ namespace EZLib
                 form.FormBorderStyle = FormBorderStyle.FixedSingle;
                 form.StartPosition = FormStartPosition.CenterScreen;
 
-                Label EZLibLabel = new Label();
-                EZLibLabel.Text = "EZLib";
-                EZLibLabel.Width = 70;
-                EZLibLabel.Height = 25;
-                EZLibLabel.Font = new Font("Lucida Console", 14);
-                EZLibLabel.Location = new Point(91, 21);
+                Label ezlibLabel = new Label();
+                ezlibLabel.Text = "EZLib";
+                ezlibLabel.Width = 70;
+                ezlibLabel.Height = 25;
+                ezlibLabel.Font = new Font("Lucida Console", 14);
+                ezlibLabel.Location = new Point(91, 21);
 
-                Label UsernameLabel = new Label();
-                UsernameLabel.Text = "Username";
-                UsernameLabel.Width = 70;
-                UsernameLabel.Height = 12;
-                UsernameLabel.Font = new Font("Lucida Console", 8);
-                UsernameLabel.Location = new Point(12, 78);
+                Label usernameLabel = new Label();
+                usernameLabel.Text = "Username";
+                usernameLabel.Width = 70;
+                usernameLabel.Height = 12;
+                usernameLabel.Font = new Font("Lucida Console", 8);
+                usernameLabel.Location = new Point(12, 78);
 
-                TextBox UsernameText = new TextBox();
-                UsernameText.Size = new Size(219, 20);
-                UsernameText.Location = new Point(14, 92);
+                TextBox usernameText = new TextBox();
+                usernameText.Size = new Size(219, 20);
+                usernameText.Location = new Point(14, 92);
 
-                Label PasswordLabel = new Label();
-                PasswordLabel.Text = "Password";
-                PasswordLabel.Width = 70;
-                PasswordLabel.Height = 12;
-                PasswordLabel.Font = new Font("Lucida Console", 8);
-                PasswordLabel.Location = new Point(12, 117);
+                Label passwordLabel = new Label();
+                passwordLabel.Text = "Password";
+                passwordLabel.Width = 70;
+                passwordLabel.Height = 12;
+                passwordLabel.Font = new Font("Lucida Console", 8);
+                passwordLabel.Location = new Point(12, 117);
 
-                TextBox PasswordText = new TextBox();
-                PasswordText.Size = new Size(219, 20);
-                PasswordText.Location = new Point(14, 131);
-                PasswordText.UseSystemPasswordChar = true;
+                TextBox passwordText = new TextBox();
+                passwordText.Size = new Size(219, 20);
+                passwordText.Location = new Point(14, 131);
+                passwordText.UseSystemPasswordChar = true;
 
                 Button ButtonLogin = new Button();
                 ButtonLogin.Text = "Login";
@@ -90,21 +90,21 @@ namespace EZLib
                 ButtonRegister.Size = new Size(219, 20);
                 ButtonRegister.Location = new Point(14, 197);
 
-                Label CopyrightLabel = new Label();
-                CopyrightLabel.Text = "Copyright 2017 EZLib";
-                CopyrightLabel.Width = 2000;
-                CopyrightLabel.Height = 12;
-                CopyrightLabel.Font = new Font("Lucida Console", 8);
-                CopyrightLabel.Location = new Point(51, 234);
+                Label copyrightLabel = new Label();
+                copyrightLabel.Text = "Copyright 2017 EZLib";
+                copyrightLabel.Width = 2000;
+                copyrightLabel.Height = 12;
+                copyrightLabel.Font = new Font("Lucida Console", 8);
+                copyrightLabel.Location = new Point(51, 234);
 
-                form.Controls.Add(EZLibLabel);
-                form.Controls.Add(UsernameLabel);
-                form.Controls.Add(UsernameText);
-                form.Controls.Add(PasswordLabel);
-                form.Controls.Add(PasswordText);
+                form.Controls.Add(ezlibLabel);
+                form.Controls.Add(usernameLabel);
+                form.Controls.Add(usernameText);
+                form.Controls.Add(passwordLabel);
+                form.Controls.Add(passwordText);
                 form.Controls.Add(ButtonLogin);
                 form.Controls.Add(ButtonRegister);
-                form.Controls.Add(CopyrightLabel);
+                form.Controls.Add(copyrightLabel);
 
                 ButtonLogin.Click += new EventHandler(buttonLogin);
                 ButtonRegister.Click += new EventHandler(buttonRegister);
@@ -143,7 +143,7 @@ namespace EZLib
                                     if (webResponse.Contains("success"))
                                     {
                                         form.Hide();
-                                        loadingPanel();
+                                        loadingScreen();
                                     } else
                                     {
                                         // Show License panel (TODO)
