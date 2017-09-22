@@ -2,14 +2,13 @@
 using System.Net;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Threading;
 
 namespace EZLib
 {
     public class Startup
     {
-        private static string username;
-        private static string globalProgramId;
+        internal static string username;
+        internal static string globalProgramId;
 
         public static void authenticateProgram(string programId)
         {
@@ -143,7 +142,7 @@ namespace EZLib
                                     if (webResponse.Contains("success"))
                                     {
                                         form.Hide();
-                                        loadingScreen();
+                                        //loadingScreen();
                                     } else
                                     {
                                         // Show License panel (TODO)
