@@ -44,7 +44,7 @@ namespace EZLib
             }
         }
 
-        #region errorMessages
+        #region Messages
         private static void errorHash()
         {
             using (Form form = new Form())
@@ -59,27 +59,27 @@ namespace EZLib
                 form.FormBorderStyle = FormBorderStyle.FixedSingle;
                 form.StartPosition = FormStartPosition.CenterScreen;
 
-                Label EZLibLabel = new Label();
-                EZLibLabel.Text = "EZLib";
-                EZLibLabel.Width = 70;
-                EZLibLabel.Height = 25;
-                EZLibLabel.Font = new Font("Lucida Console", 14);
-                EZLibLabel.Location = new Point(134, 9);
+                Label ezlibLabel = new Label();
+                ezlibLabel.Text = "EZLib";
+                ezlibLabel.Width = 70;
+                ezlibLabel.Height = 25;
+                ezlibLabel.Font = new Font("Lucida Console", 14);
+                ezlibLabel.Location = new Point(134, 9);
 
-                Label ErrorLabel = new Label();
-                ErrorLabel.Text = "This EZLib is either deprecated or tampered.";
-                ErrorLabel.Width = 400;
-                ErrorLabel.Height = 11;
-                ErrorLabel.Font = new Font("Lucida Console", 8);
-                ErrorLabel.Location = new Point(10, 53);
+                Label errormsgLabel = new Label();
+                errormsgLabel.Text = "This EZLib is either deprecated or tampered.";
+                errormsgLabel.Width = 400;
+                errormsgLabel.Height = 11;
+                errormsgLabel.Font = new Font("Lucida Console", 8);
+                errormsgLabel.Location = new Point(10, 53);
 
-                Label ErrorCodeLabel = new Label();
-                ErrorCodeLabel.Text = "Error Code: 0x100S";
-                ErrorCodeLabel.Width = 300;
-                ErrorCodeLabel.Height = 11;
-                ErrorCodeLabel.ForeColor = Color.Firebrick;
-                ErrorCodeLabel.Font = new Font("Lucida Console", 8);
-                ErrorCodeLabel.Location = new Point(10, 74);
+                Label errorcodeLabel = new Label();
+                errorcodeLabel.Text = "Error Code: 0x100S";
+                errorcodeLabel.Width = 300;
+                errorcodeLabel.Height = 11;
+                errorcodeLabel.ForeColor = Color.Firebrick;
+                errorcodeLabel.Font = new Font("Lucida Console", 8);
+                errorcodeLabel.Location = new Point(10, 74);
 
                 Button ButtonOK = new Button();
                 ButtonOK.Text = "OK";
@@ -87,14 +87,13 @@ namespace EZLib
                 ButtonOK.Size = new Size(75, 32);
                 ButtonOK.Location = new Point(129, 99);
 
-                form.Controls.Add(EZLibLabel);
-                form.Controls.Add(ErrorLabel);
-                form.Controls.Add(ErrorCodeLabel);
+                form.Controls.Add(ezlibLabel);
+                form.Controls.Add(errormsgLabel);
+                form.Controls.Add(errorcodeLabel);
                 form.Controls.Add(ButtonOK);
 
                 ButtonOK.Click += new EventHandler(buttonOK);
                 form.FormClosing += new FormClosingEventHandler(formClosing);
-
 
                 #region Events
                 void formClosing(object sender, FormClosingEventArgs e)

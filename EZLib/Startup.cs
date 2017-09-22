@@ -146,7 +146,7 @@ namespace EZLib
                                         loadingPanel();
                                     } else
                                     {
-                                        // Show License panel
+                                        // Show License panel (TODO)
                                     }
                                 }
                             } else if (webResponse.Contains("Hardware"))
@@ -154,11 +154,11 @@ namespace EZLib
                                 errorhwidDM();
                             } else if (webResponse.Contains("Password"))
                             {
-                                // Incorrect password
-                            } else if (webResponse.Contains("exist"))
+                                // Incorrect password (TODO)
+                            }
+                            else if (webResponse.Contains("exist"))
                             {
-
-
+                                // Account does not exist (TODO)
                             }
                         }
                     }
@@ -323,53 +323,7 @@ namespace EZLib
             }
         }
 
-        private static void loadingPanel()
-        {
-            using (Form form = new Form())
-            {
-                form.Text = "EZLib";
-                form.MaximizeBox = false;
-                form.MinimizeBox = false;
-                form.Width = 384;
-                form.Height = 180;
-                form.ShowIcon = false;
-                form.ShowInTaskbar = false;
-                form.FormBorderStyle = FormBorderStyle.None;
-                form.StartPosition = FormStartPosition.CenterScreen;
-
-                Label EZLibLabel = new Label();
-                EZLibLabel.Text = "EZLib";
-                EZLibLabel.Width = 64;
-                EZLibLabel.Height = 19;
-                EZLibLabel.Font = new Font("Lucida Console", 14);
-                EZLibLabel.Location = new Point(160, 9);
-
-                Label LoadingMsgLabel = new Label();
-                LoadingMsgLabel.Text = "Authenticating and loading program...";
-                LoadingMsgLabel.Width = 303;
-                LoadingMsgLabel.Height = 20;
-                LoadingMsgLabel.Font = new Font("Lucida Console", 10);
-                LoadingMsgLabel.Location = new Point(41, 84);
-
-                Label CopyrightLabel = new Label();
-                CopyrightLabel.Text = "Copyright 2017 EZLib";
-                CopyrightLabel.Width = 145;
-                CopyrightLabel.Height = 11;
-                CopyrightLabel.Font = new Font("Lucida Console", 8);
-                CopyrightLabel.Location = new Point(120, 158);
-
-                form.Controls.Add(EZLibLabel);
-                form.Controls.Add(LoadingMsgLabel);
-                form.Controls.Add(CopyrightLabel);
-
-                form.ShowDialog();
-
-                System.Threading.Thread.Sleep(500);
-                form.Hide();
-            }
-        }
-
-        #region errorMessages
+        #region Messages
 
         private static void errorMsgProgram()
         {
@@ -503,6 +457,51 @@ namespace EZLib
                 #endregion
 
                 form.ShowDialog();
+            }
+        }
+        private static void loadingScreen()
+        {
+            using (Form form = new Form())
+            {
+                form.Text = "EZLib";
+                form.MaximizeBox = false;
+                form.MinimizeBox = false;
+                form.Width = 384;
+                form.Height = 180;
+                form.ShowIcon = false;
+                form.ShowInTaskbar = false;
+                form.FormBorderStyle = FormBorderStyle.None;
+                form.StartPosition = FormStartPosition.CenterScreen;
+
+                Label ezlibLabel = new Label();
+                ezlibLabel.Text = "EZLib";
+                ezlibLabel.Width = 64;
+                ezlibLabel.Height = 19;
+                ezlibLabel.Font = new Font("Lucida Console", 14);
+                ezlibLabel.Location = new Point(160, 9);
+
+                Label loadingmsgLabel = new Label();
+                loadingmsgLabel.Text = "Authenticating and loading program...";
+                loadingmsgLabel.Width = 303;
+                loadingmsgLabel.Height = 20;
+                loadingmsgLabel.Font = new Font("Lucida Console", 10);
+                loadingmsgLabel.Location = new Point(41, 84);
+
+                Label copyrightlabel = new Label();
+                copyrightlabel.Text = "Copyright 2017 EZLib";
+                copyrightlabel.Width = 145;
+                copyrightlabel.Height = 11;
+                copyrightlabel.Font = new Font("Lucida Console", 8);
+                copyrightlabel.Location = new Point(120, 158);
+
+                form.Controls.Add(ezlibLabel);
+                form.Controls.Add(loadingmsgLabel);
+                form.Controls.Add(copyrightlabel);
+
+                form.ShowDialog();
+
+                System.Threading.Thread.Sleep(500);
+                form.Hide();
             }
         }
 
