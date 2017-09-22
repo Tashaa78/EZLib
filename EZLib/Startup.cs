@@ -113,14 +113,14 @@ namespace EZLib
 
                 void buttonLogin(object sender, EventArgs e)
                 {
-                    if (UsernameText.Text == "" || PasswordText.Text == "")
+                    if (usernameText.Text == "" || passwordText.Text == "")
                     {
                         MessageBox.Show("Username and Password fields required", "EZLib — Required Fields", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
                     {
                         string webResponse;
-                        string apiUrl = "https://ezlib.rocks/api/endpoint.php?action=authenticate&username=" + UsernameText.Text + "&password=" + PasswordText.Text + "&hardware_id=" + Hardware_ID.Generate();
+                        string apiUrl = "https://ezlib.rocks/api/endpoint.php?action=authenticate&username=" + usernameText.Text + "&password=" + passwordText.Text + "&hardware_id=" + Hardware_ID.Generate();
 
                         using (WebClient webClient = new WebClient())
                         {
@@ -130,7 +130,7 @@ namespace EZLib
 
                             if (webResponse.Contains("success"))
                             {
-                                username = UsernameText.Text;
+                                username = usernameText.Text;
 
                                 string apiUrl2 = "https://ezlib.rocks/api/endpoint.php?action=isLicensed&programId=" + globalProgramId + "&username=" + username;
 
