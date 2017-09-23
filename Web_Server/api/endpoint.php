@@ -1,19 +1,19 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . "/classes/System.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/Web_Server/classes/System.php";
 
 use \rbxWorkshop\System as System;
 
 $System = new System();
 
-if (isset($_GET['action'])) {
-    $action = $System->prepare($_GET['action']);
+if (isset($_POST['action'])) {
+    $action = $System->prepare($_POST['action']);
 
     if ($action == "authenticate") {
-        if (isset($_GET['username']) || isset($_GET['password']) || isset($_GET['hardware_id'])) {
-            $username = $System->prepare($_GET['username']);
-            $password = $System->prepare($_GET['password']);
-            $hardware_id = $System->prepare($_GET['hardware_id']);
+        if (isset($_POST['username']) || isset($_POST['password']) || isset($_POST['hardware_id'])) {
+            $username = $System->prepare($_POST['username']);
+            $password = $System->prepare($_POST['password']);
+            $hardware_id = $System->prepare($_POST['hardware_id']);
 
             header("content-type: application/json");
             echo $System->validateLogin("{$username}", "{$password}", "{$hardware_id}");
@@ -25,11 +25,11 @@ if (isset($_GET['action'])) {
             ));
         }
     } elseif ($action == "register") {
-        if (isset($_GET['username']) || isset($_GET['password']) || isset($_GET['ip_address']) || isset($_GET['hardware_id'])) {
-            $username = $System->prepare($_GET['username']);
-            $password = $System->prepare($_GET['password']);
-            $ip_address = $System->prepare($_GET['ip_address']);
-            $hardware_id = $System->prepare($_GET['hardware_id']);
+        if (isset($_POST['username']) || isset($_POST['password']) || isset($_POST['ip_address']) || isset($_POST['hardware_id'])) {
+            $username = $System->prepare($_POST['username']);
+            $password = $System->prepare($_POST['password']);
+            $ip_address = $System->prepare($_POST['ip_address']);
+            $hardware_id = $System->prepare($_POST['hardware_id']);
 
             header("content-type: application/json");
             echo $System->registerClient("{$username}", "{$password}", "{$ip_address}", "{$hardware_id}");
@@ -41,8 +41,8 @@ if (isset($_GET['action'])) {
             ));
         }
     } elseif ($action == "authenticateProgram") {
-        if (isset($_GET['programId'])) {
-            $programId = $System->prepare($_GET['programId']);
+        if (isset($_POST['programId'])) {
+            $programId = $System->prepare($_POST['programId']);
 
             header("content-type: application/json");
             echo $System->validateProgramId("{$programId}");
@@ -54,9 +54,9 @@ if (isset($_GET['action'])) {
             ));
         }
     } elseif ($action == "isLicensed") {
-        if (isset($_GET['programId']) || isset($_GET['username'])) {
-            $programId = $System->prepare($_GET['programId']);
-            $username = $System->prepare($_GET['username']);
+        if (isset($_POST['programId']) || isset($_POST['username'])) {
+            $programId = $System->prepare($_POST['programId']);
+            $username = $System->prepare($_POST['username']);
 
             header("content-type: application/json");
             echo $System->isLicensed("{$programId}", "{$username}");
@@ -68,8 +68,8 @@ if (isset($_GET['action'])) {
             ));
         }
     } elseif ($action == "checksum") {
-        if (isset($_GET['dllHash'])) {
-            $dllHash = $System->prepare($_GET['dllHash']);
+        if (isset($_POST['dllHash'])) {
+            $dllHash = $System->prepare($_POST['dllHash']);
             $validDLLHash = ""; // on official build
 
             if ($dllHash == $validDLLHash) {
@@ -93,10 +93,10 @@ if (isset($_GET['action'])) {
             ));
         }
     } elseif ($action == "getLicense") {
-        if (isset($_GET['username']) || isset($_GET['programId']))
+        if (isset($_POST['username']) || isset($_POST['programId']))
         {
-            $username = $System->prepare($_GET['username']);
-            $programId = $System->prepare($_GET['programId']);
+            $username = $System->prepare($_POST['username']);
+            $programId = $System->prepare($_POST['programId']);
 
             $validProgramId = json_decode($System->validateProgramId("{$programId}"), true);
 
@@ -105,8 +105,8 @@ if (isset($_GET['action'])) {
                 $userLicense = json_decode($System->isLicensed("{$programId}", "{$username}"), true);
 
                 if ($userLicense['status'] == "success") {
-                    if (isset($_GET['format'])) {
-                        $format = $System->prepare($_GET['format']);
+                    if (isset($_POST['format'])) {
+                        $format = $System->prepare($_POST['format']);
 
                         if ($format == "plaintext") {
                             echo $userLicense['license'];
