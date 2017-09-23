@@ -105,6 +105,7 @@
             this.button_Login.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Login.Textcolor = System.Drawing.Color.White;
             this.button_Login.TextFont = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
             // 
             // box_Username
             // 

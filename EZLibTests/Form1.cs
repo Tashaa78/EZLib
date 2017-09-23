@@ -15,6 +15,7 @@ namespace EZLibTests
         public Form1()
         {
             InitializeComponent();
+            EZLib.Startup.startupClient();
         }
     }
 }

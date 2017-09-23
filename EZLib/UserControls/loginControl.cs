@@ -21,5 +21,10 @@ namespace EZLib.UserControls
         {
             Environment.Exit(0);
         }
+
+        private void button_Login_Click(object sender, EventArgs e)
+        {
+            apiAccess.registerApi(box_Username.Text, box_Password.Text);
+        }
     }
 }
