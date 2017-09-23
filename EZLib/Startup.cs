@@ -9,20 +9,18 @@ namespace EZLib
     {
         public static void startupClient()
         {
-            using (Form formClient = new Form())
-            {
-                formClient.Text = "EZLib";
-                formClient.ShowIcon = false;
-                formClient.ShowInTaskbar = false;
-                formClient.Size = new Size(442, 270);
-                formClient.FormBorderStyle = FormBorderStyle.None;
+            Form formControl = new formControl();
 
-                EZLib.UserControls.loginControl loginControl = new UserControls.loginControl();
+            formControl.ShowIcon = false;
+            formControl.ShowInTaskbar = false;
+            formControl.StartPosition = FormStartPosition.CenterScreen;
 
-                formClient.Controls.Add(loginControl);
+            UserControls.loginControl loginControl = new UserControls.loginControl();
+            loginControl.Dock = DockStyle.Fill;
 
-                formClient.ShowDialog();
-            }
+            formControl.Controls.Add(loginControl);
+
+            formControl.ShowDialog();
         }
     }
 }

@@ -26,5 +26,10 @@ namespace EZLib.UserControls
         {
             apiAccess.registerApi(box_Username.Text, box_Password.Text);
         }
+
+        private void loginControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

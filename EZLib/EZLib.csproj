@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
+    <Compile Include="formControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formControl.Designer.cs">
+      <DependentUpon>formControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hardware_ID.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -57,6 +63,18 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Alert Messages\formMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Alert Messages\formMessage.Designer.cs">
+      <DependentUpon>formMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Alert Messages\alertMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Alert Messages\alertMessage.Designer.cs">
+      <DependentUpon>alertMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\loginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,9 +83,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="formControl.resx">
+      <DependentUpon>formControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Alert Messages\formMessage.resx">
+      <DependentUpon>formMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Alert Messages\alertMessage.resx">
+      <DependentUpon>alertMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loginControl.resx">
       <DependentUpon>loginControl.cs</DependentUpon>
