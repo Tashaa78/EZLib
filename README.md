@@ -1,19 +1,20 @@
 # EZLib
 
 
-EZLib is a licensing system for .NET applications but with serious security. EZLib has features that you can see in a lot of other licensing systems for free. **You can send merge requests.**
+EZLib is a licensing system for the .NET Framework. This licensing system has lots of features that are in other paid licensing systems for absolutely free. Please do note that **we do not provide** the web-server files.
 
-This licensing system provides,
-* Hardware ID Banning (TODO)
-* Server Variables (TODO)
-* User IP Logs (TODO)
-* User Information
-* Web-based Developer Panel (TODO)
-* Anti-Tampering System
-* Auto-updater System (TODO)
+## Features
+* Machine-locked licenses
+* User Information (hardware ID, IP logs)
+* Completely free and open-sourced
+* Secure server-sided variables
+* Custom license generations
+* Web-based panel
+* Auto-update system
+* News system
 
-.. more to come as well.
+.. we are stil working on more features.
 
-
-
-Join our Discord server, https://discord.gg/gYWEAZR
+## Discord
+![](https://cdn-images-1.medium.com/max/230/1*OoXboCzk0gYvTNwNnV4S9A@2x.png)
+[Discord](https://discord.gg/jGkrde)
