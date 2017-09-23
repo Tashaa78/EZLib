@@ -16,7 +16,6 @@ namespace EZLibTests
         {
             InitializeComponent();
             EZLib.Startup.authenticateProgram("SuiHtcU04q");
-            MessageBox.Show(EZLib.UserInformation.currentLicense());
         }
     }
 }

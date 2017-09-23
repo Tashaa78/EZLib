@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Net;
 
 namespace EZLib
 {
@@ -31,7 +25,13 @@ namespace EZLib
                 webClient.Headers.Set(HttpRequestHeader.UserAgent, "EZLib/1.0 +https://www.ezlib.rocks/");
                 webResponse = webClient.DownloadString(apiUrl);
 
-                return webResponse;
+                if (webResponse == "")
+                {
+                    return "N/A";
+                } else
+                {
+                    return webResponse;
+                }
             }
 
         }
