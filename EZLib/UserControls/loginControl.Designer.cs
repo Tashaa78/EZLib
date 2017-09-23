@@ -35,12 +35,12 @@
             this.label_EZLib = new System.Windows.Forms.Label();
             this.button_Login = new Bunifu.Framework.UI.BunifuFlatButton();
             this.box_Username = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.panel_Status = new System.Windows.Forms.Panel();
-            this.label_Status = new System.Windows.Forms.Label();
             this.button_Register = new System.Windows.Forms.Label();
             this.box_Password = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.elipse = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.drag_control = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.label_Status = new System.Windows.Forms.Label();
+            this.panel_Status = new System.Windows.Forms.Panel();
             this.panel_Control.SuspendLayout();
             this.panel_Status.SuspendLayout();
             this.SuspendLayout();
@@ -131,27 +131,6 @@
             this.box_Username.TabIndex = 5;
             this.box_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
-            // panel_Status
-            // 
-            this.panel_Status.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel_Status.Controls.Add(this.label_Status);
-            this.panel_Status.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_Status.ForeColor = System.Drawing.Color.Transparent;
-            this.panel_Status.Location = new System.Drawing.Point(0, 244);
-            this.panel_Status.Name = "panel_Status";
-            this.panel_Status.Size = new System.Drawing.Size(442, 26);
-            this.panel_Status.TabIndex = 4;
-            // 
-            // label_Status
-            // 
-            this.label_Status.AutoSize = true;
-            this.label_Status.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Status.Location = new System.Drawing.Point(4, 7);
-            this.label_Status.Name = "label_Status";
-            this.label_Status.Size = new System.Drawing.Size(64, 13);
-            this.label_Status.TabIndex = 3;
-            this.label_Status.Text = "Status: Idle";
-            // 
             // button_Register
             // 
             this.button_Register.AutoSize = true;
@@ -195,6 +174,27 @@
             this.drag_control.TargetControl = this.panel_Control;
             this.drag_control.Vertical = true;
             // 
+            // label_Status
+            // 
+            this.label_Status.AutoSize = true;
+            this.label_Status.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Status.Location = new System.Drawing.Point(164, 7);
+            this.label_Status.Name = "label_Status";
+            this.label_Status.Size = new System.Drawing.Size(115, 13);
+            this.label_Status.TabIndex = 3;
+            this.label_Status.Text = "Copyright 2017 EZLib";
+            // 
+            // panel_Status
+            // 
+            this.panel_Status.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel_Status.Controls.Add(this.label_Status);
+            this.panel_Status.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_Status.ForeColor = System.Drawing.Color.Transparent;
+            this.panel_Status.Location = new System.Drawing.Point(0, 244);
+            this.panel_Status.Name = "panel_Status";
+            this.panel_Status.Size = new System.Drawing.Size(442, 26);
+            this.panel_Status.TabIndex = 4;
+            // 
             // loginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,11 +224,11 @@
         private System.Windows.Forms.Label label_EZLib;
         private Bunifu.Framework.UI.BunifuFlatButton button_Login;
         private Bunifu.Framework.UI.BunifuMaterialTextbox box_Username;
-        private System.Windows.Forms.Panel panel_Status;
-        private System.Windows.Forms.Label label_Status;
         private System.Windows.Forms.Label button_Register;
         private Bunifu.Framework.UI.BunifuMaterialTextbox box_Password;
         private Bunifu.Framework.UI.BunifuElipse elipse;
         private Bunifu.Framework.UI.BunifuDragControl drag_control;
+        private System.Windows.Forms.Label label_Status;
+        private System.Windows.Forms.Panel panel_Status;
     }
 }

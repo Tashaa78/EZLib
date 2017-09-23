@@ -12,6 +12,8 @@ namespace EZLib
 {
     internal class apiAccess
     {
+        static List<Form> formsToClose = new List<Form>();
+
         public static void registerApi(string username, string password)
         {
             try
@@ -116,6 +118,7 @@ namespace EZLib
                     {
                         Form formControl = new formControl();
 
+                        formControl.Name = "Loader";
                         formControl.StartPosition = FormStartPosition.Manual;
                         formControl.ShowIcon = false;
                         formControl.ShowInTaskbar = false;
@@ -126,7 +129,16 @@ namespace EZLib
 
                         formControl.Controls.Add(l_alertMessage);
 
+                        foreach (Form f in formsToClose)
+                        {
+                            if (f.Name != "Loader")
+                            {
+                                f.Close();
+                            }
+                        }
+
                         formControl.ShowDialog();
+                        formsToClose.Add(formControl);
                     }
                     else if (webResponse.Contains("error"))
                     {
@@ -214,6 +226,7 @@ namespace EZLib
                     {
                         Form formControl = new formControl();
 
+                        formControl.Name = "Login";
                         formControl.ShowIcon = false;
                         formControl.ShowInTaskbar = false;
                         formControl.StartPosition = FormStartPosition.CenterScreen;
@@ -223,6 +236,7 @@ namespace EZLib
 
                         formControl.Controls.Add(loginControl);
 
+                        formsToClose.Add(formControl);
                         formControl.ShowDialog();
                     }
                     else if (webResponse.Contains("error"))
@@ -232,6 +246,9 @@ namespace EZLib
                         formControl.StartPosition = FormStartPosition.Manual;
                         formControl.ShowIcon = false;
                         formControl.ShowInTaskbar = false;
+                        formControl.Opacity = 95;
+                        formControl.Top = 60;
+                        formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
 
                         UserControls.Alert_Messages.alertMessage alertMessage = new UserControls.Alert_Messages.alertMessage("This program ID is banned or does not exist", UserControls.Alert_Messages.alertMessage.AlertType.error);
 
