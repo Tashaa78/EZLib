@@ -16,5 +16,10 @@ namespace EZLib.UserControls
         {
             InitializeComponent();
         }
+
+        private void button_Close_MouseClick(object sender, MouseEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

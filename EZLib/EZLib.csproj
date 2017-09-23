@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>C:\Users\Justin\Downloads\Bunifu_UI_v1.5.3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -44,7 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hardware_ID.cs" />
-    <Compile Include="Security.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\loginControl.cs">
@@ -53,9 +62,12 @@
     <Compile Include="UserControls\loginControl.Designer.cs">
       <DependentUpon>loginControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserInformation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loginControl.resx">
       <DependentUpon>loginControl.cs</DependentUpon>
     </EmbeddedResource>
