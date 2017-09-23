@@ -1,6 +1,6 @@
 <?php
 
-namespace rbxWorkshop
+namespace EZLib
 {
     class System
     {

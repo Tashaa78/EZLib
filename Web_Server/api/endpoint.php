@@ -2,7 +2,7 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . "/Web_Server/classes/System.php";
 
-use \rbxWorkshop\System as System;
+use \EZLib\System as System;
 
 $System = new System();
 
