@@ -38,7 +38,7 @@
             // 
             this.icon.BackColor = System.Drawing.Color.Transparent;
             this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
-            this.icon.Location = new System.Drawing.Point(40, 22);
+            this.icon.Location = new System.Drawing.Point(23, 22);
             this.icon.Name = "icon";
             this.icon.Size = new System.Drawing.Size(50, 50);
             this.icon.TabIndex = 0;
@@ -50,7 +50,7 @@
             this.label_Message.BackColor = System.Drawing.Color.Transparent;
             this.label_Message.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Message.ForeColor = System.Drawing.Color.White;
-            this.label_Message.Location = new System.Drawing.Point(113, 39);
+            this.label_Message.Location = new System.Drawing.Point(80, 39);
             this.label_Message.Name = "label_Message";
             this.label_Message.Size = new System.Drawing.Size(196, 17);
             this.label_Message.TabIndex = 1;

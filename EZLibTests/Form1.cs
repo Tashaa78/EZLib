@@ -7,7 +7,7 @@ namespace EZLibTests
         public Form1()
         {
             InitializeComponent();
-            EZLib.Startup.startupClient();
+            EZLib.Startup.authProgram("5994393");
         }
     }
 }

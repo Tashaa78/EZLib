@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace EZLib.UserControls.Alert_Messages
 {
-    public partial class formMessage : Form
+    internal partial class formMessage : Form
     {
         public formMessage()
         {

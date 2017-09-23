@@ -75,6 +75,12 @@
     <Compile Include="UserControls\Alert Messages\alertMessage.Designer.cs">
       <DependentUpon>alertMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\loaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\loaderControl.Designer.cs">
+      <DependentUpon>loaderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\loginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Alert Messages\alertMessage.resx">
       <DependentUpon>alertMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\loaderControl.resx">
+      <DependentUpon>loaderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loginControl.resx">
       <DependentUpon>loginControl.cs</DependentUpon>
