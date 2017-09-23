@@ -21,7 +21,11 @@ namespace EZLib
                 string inputHardwareId = Hardware_ID.Generate();
 
                 string postData = "action=register&username=" + inputPassword + "&password=" + inputPassword + "&ip_address=" + inputIPAddress + "&hardware_id=" + inputHardwareId;
-                
+
+                using (WebClient webClient = new WebClient())
+                {
+                    
+                }
             }
             catch (Exception ex)
             {
