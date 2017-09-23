@@ -35,5 +35,10 @@ namespace EZLib
             }
 
         }
+
+        public static string currentHardwareId()
+        {
+            return Hardware_ID.Generate();
+        }
     }
 }
