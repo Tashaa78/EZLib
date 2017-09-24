@@ -75,6 +75,12 @@
     <Compile Include="UserControls\Alert Messages\alertMessage.Designer.cs">
       <DependentUpon>alertMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Error Messages\formMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Error Messages\formMessage.Designer.cs">
+      <DependentUpon>formMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\loaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     <EmbeddedResource Include="UserControls\Alert Messages\alertMessage.resx">
       <DependentUpon>alertMessage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Error Messages\formMessage.resx">
+      <DependentUpon>formMessage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loaderControl.resx">
       <DependentUpon>loaderControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,8 +119,6 @@
       <DependentUpon>loginControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\Error Messages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

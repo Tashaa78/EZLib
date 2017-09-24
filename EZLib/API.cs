@@ -8,7 +8,6 @@ namespace EZLib
     {
         internal static string currentUsername;
 
-
         internal static Form loginForm = new formControl();
         internal static Form loaderForm = new formControl();
 
@@ -92,7 +91,7 @@ namespace EZLib
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occcured! Error: " + ex.Message);
+                throw ex;
             }
         }
         public static void loginApi(string username, string password)
