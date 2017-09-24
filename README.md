@@ -1,8 +1,7 @@
 # EZLib
 
 
-EZLib is a licensing system for the .NET Framework. This licensing system has lots of features that are in other paid licensing systems for absolutely free. Please do note that **we do not provide** the web-server files.
-
+EZLib is a licensing system for the .NET Framework. This licensing system has lots of features that are in other paid licensing systems for absolutely free. We also have a hosted version of EZLib with more features.
 ## Features
 * Machine-locked licenses
 * User Information (hardware ID, IP logs)
