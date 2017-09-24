@@ -87,6 +87,7 @@
     <Compile Include="UserControls\loginControl.Designer.cs">
       <DependentUpon>loginControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="formControl.resx">

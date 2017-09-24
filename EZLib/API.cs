@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Net;
 using System.Windows.Forms;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 
 namespace EZLib
 {
     internal class apiAccess
     {
-        static List<Form> formsToClose = new List<Form>();
+        internal static string currentUsername;
+
+
+        internal static Form loginForm = new formControl();
+        internal static Form loaderForm = new formControl();
 
         public static void registerApi(string username, string password)
         {
@@ -116,29 +114,20 @@ namespace EZLib
 
                     if (webResponse.Contains("success"))
                     {
-                        Form formControl = new formControl();
+                        currentUsername = inputUsername;
+                        loginForm.Visible = false;
 
-                        formControl.Name = "Loader";
-                        formControl.StartPosition = FormStartPosition.Manual;
-                        formControl.ShowIcon = false;
-                        formControl.ShowInTaskbar = false;
-                        formControl.StartPosition = FormStartPosition.CenterScreen;
+                        loaderForm.StartPosition = FormStartPosition.Manual;
+                        loaderForm.ShowIcon = false;
+                        loaderForm.ShowInTaskbar = false;
+                        loaderForm.StartPosition = FormStartPosition.CenterScreen;
 
                         UserControls.loaderControl l_alertMessage = new UserControls.loaderControl();
                         l_alertMessage.Dock = DockStyle.Fill;
 
-                        formControl.Controls.Add(l_alertMessage);
+                        loaderForm.Controls.Add(l_alertMessage);
 
-                        foreach (Form f in formsToClose)
-                        {
-                            if (f.Name != "Loader")
-                            {
-                                f.Close();
-                            }
-                        }
-
-                        formControl.ShowDialog();
-                        formsToClose.Add(formControl);
+                        loaderForm.ShowDialog();
                     }
                     else if (webResponse.Contains("error"))
                     {
@@ -224,20 +213,16 @@ namespace EZLib
 
                     if (webResponse.Contains("success"))
                     {
-                        Form formControl = new formControl();
-
-                        formControl.Name = "Login";
-                        formControl.ShowIcon = false;
-                        formControl.ShowInTaskbar = false;
-                        formControl.StartPosition = FormStartPosition.CenterScreen;
+                        loginForm.ShowIcon = false;
+                        loginForm.ShowInTaskbar = false;
+                        loginForm.StartPosition = FormStartPosition.CenterScreen;
 
                         UserControls.loginControl loginControl = new UserControls.loginControl();
                         loginControl.Dock = DockStyle.Fill;
 
-                        formControl.Controls.Add(loginControl);
+                        loginForm.Controls.Add(loginControl);
 
-                        formsToClose.Add(formControl);
-                        formControl.ShowDialog();
+                        loginForm.ShowDialog();
                     }
                     else if (webResponse.Contains("error"))
                     {
@@ -261,6 +246,29 @@ namespace EZLib
             catch (Exception ex)
             {
                 MessageBox.Show("An error has occurred. Error: " + ex.Message);
+            }
+        }
+        public static string ipAddressApi()
+        {
+            try
+            {
+                string webResponse;
+
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Proxy = null;
+                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                    webResponse = webClient.DownloadString("http://icanhazip.com/");
+
+                    return webResponse;
+                }
+
+                return webResponse;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occurred. Error:" + ex.Message);
+                return ex.Message;
             }
         }
     }
