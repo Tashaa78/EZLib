@@ -9,20 +9,17 @@ namespace EZLib
         // Database
         public function database()
         {
-            define("DB_HOST", "localhost");
-            define("DB_USER", "root");
-            define("DB_PASS", "");
-            define("DB_NAME", "ezlib");
-
-            $connection = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-            if ($connection->connect_errno) {
-                exit("Failed to connect: " . $connection->connect_error);
+            try {
+                $connection = new \PDO("mysql:host=127.0.0.1;dbname=ezlib", "root", "");
+                $connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                return $connection;
+            } catch (\PDOException $exception) {
+                die("An error has occurred. Error: " . $exception->getMessage());
             }
-            $this->varChecks();
-            return $connection;
+
         }
 
-        // Other
+        // Quick Checks
         public function varChecks()
         {
             if ($this->errorReporting === TRUE) {
@@ -32,142 +29,102 @@ namespace EZLib
             } else {
                 error_reporting(0);
             }
-        }
-        public function prepare($parameter)
+        } // Quick checks for errors etc.
+        public function usernameExist($username)
         {
-            return mysqli_real_escape_string($this->database(), $parameter);
-        }
+            $query = $this->database()->prepare("SELECT * FROM `users` WHERE `username`=?");
+            $query->bindParam(1, $username);
+            $query->execute();
 
-        // Validation
-        public function userExist($username)
-        {
-            $sql = "SELECT * FROM `users` WHERE `username`='$username'";
-
-            if (mysqli_num_rows($this->database()->query($sql)) == 1) {
+            if ($query->fetch(\PDO::FETCH_ASSOC) > 0) {
                 return true;
             } else {
                 return false;
             }
-        }
-        public function validateProgramId($programId)
+        } // Checks if Username exists
+        public function ipAddressExist($ip_address)
         {
-            $sql = "SELECT * FROM `program_ids` WHERE `program_token`='$programId'";
+            $query = $this->database()->prepare("SELECT * FROM `users` WHERE `ip_address`=?");
+            $query->bindParam(1, $ip_address);
+            $query->execute();
 
-            if (mysqli_num_rows($this->database()->query($sql)) == 1) {
-                $array = mysqli_fetch_array($this->database()->query($sql));
+            if ($query->fetch(\PDO::FETCH_ASSOC) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } // Checks if IP Address exists
+        public function programIdExist($service, $program_id)
+        {
+            if ($service == "website") {
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=?");
+                $query->bindParam(1, $program_id);
+                $query->execute();
 
-                return json_encode(array(
-                    "status" => "success",
-                    "programName" => "{$array['program_name']}",
-                ));
+                if ($query->fetch(\PDO::FETCH_ASSOC) > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } elseif ($service == "ezlib") {
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=?");
+                $query->bindParam(1, $program_id);
+                $query->execute();
+
+                while ($array = $query->fetch(\PDO::FETCH_ASSOC)) {
+                    return $array["program_name"];
+                }
             } else {
                 return json_encode(array(
                     "status" => "error",
-                    "reason" => "Program ID does not exist",
+                    "reason" => "Unknown service parameter",
                 ));
             }
-        }
-        public function isLicensed($programId, $username)
+        } // Checks if program ID exists
+        public function isLicensed($program_id, $username) // Checks if user has a license with the provided program ID.
         {
-            $sql = "SELECT * FROM `program_licenses` WHERE `program_id`='$programId' AND `license_holder`='$username'";
-            $programExist = json_decode($this->validateProgramId("{$programId}"), true);
+            if ($this->programIdExist("website", "{$program_id}")) {
+                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_token`=? AND `license_holder`=?");
+                $query->bindParam(1, $program_id);
+                $query->bindParam(2, $username);
+                $query->execute();
+                $array = $query->fetch(\PDO::FETCH_ASSOC);
 
-            if ($programExist['status'] == "success") {
-                if (mysqli_num_rows($this->database()->query($sql)) == 1) {
-                    $array = mysqli_fetch_array($this->database()->query($sql));
+                if ($array > 0) {
                     $today = date("M d Y");
                     $todayDate = new \DateTime("{$today}");
-                    $expiryDate = new \DateTime("{$array['license_expires']}");
+                    $expiryDate = new \DateTime("{$array['license_expiry']}");
 
-                    if ($array['license_active'] == 1 || "1") {
-                        if ($todayDate >= $expiryDate) {
+                    if ($array['license_active'] == "1" || 1) {
+                        if ($todayDate <= $expiryDate) {
                             return json_encode(array(
-                                "status" => "error",
-                                "reason" => "License expired",
+                                "status" => "success",
+                                "username" => "{$username}",
+                                "license" => "{$array['program_license']}",
+                                "expiry_date" => "{$array['license_expiry']}",
                             ));
                         } else {
                             return json_encode(array(
-                                "status" => "success",
-                                "license" => "{$array['program_license']}",
+                                "status" => "error",
+                                "reason" => "License Key is expired",
                             ));
                         }
                     } else {
                         return json_encode(array(
                             "status" => "error",
-                            "reason" => "License is banned",
+                            "reason" => "License Key is not active/banned",
                         ));
                     }
                 } else {
                     return json_encode(array(
                         "status" => "error",
-                        "reason" => "User does not have a license",
+                        "reason" => "User does not have a license key",
                     ));
                 }
             } else {
                 return json_encode(array(
                     "status" => "error",
                     "reason" => "Program ID does not exist",
-                ));
-            }
-        }
-
-        // User
-        public function validateLogin($username, $password, $hardware_id)
-        {
-            $sql = "SELECT * FROM `users` WHERE `username`='$username'";
-
-            if ($this->userExist($username)) {
-                $array = mysqli_fetch_array($this->database()->query($sql));
-
-                if (password_verify("{$password}", "{$array['password']}")) {
-                    if ($array['hardware_id'] == $hardware_id) {
-                        return json_encode(array(
-                            "status" => "success",
-                            "username" => "{$username}",
-                        ));
-                    } else {
-                        return json_encode(array(
-                            "status" => "error",
-                            "username" => "Hardware ID does not match",
-                        ));
-                    }
-                } else {
-                    return json_encode(array(
-                        "status" => "error",
-                        "reason" => "Password is incorrect",
-                    ));
-                }
-            } else {
-                return json_encode(array(
-                    "status" => "error",
-                    "reason" => "User does not exist",
-                ));
-            }
-        }
-        public function registerClient($username, $password, $ip_address, $hardware_id)
-        {
-            if (!$this->userExist($username)) {
-                $check_sql = "SELECT * FROM `users` WHERE `ip_address`='$ip_address'";
-
-                if (mysqli_num_rows($this->database()->query($check_sql)) == 1) {
-                    return json_encode(array(
-                        "status" => "error",
-                        "reason" => "IP address found",
-                    ));
-                } else {
-                    $encrypted_password = password_hash("{$password}", PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO `users` (username, password, ip_address, hardware_id) VALUES ('$username', '$encrypted_password', '$ip_address', '$hardware_id')";
-                    $this->database()->query($sql);
-
-                    return json_encode(array(
-                        "status" => "success",
-                        "username" => "{$username}",
-                    ));
-                }
-            } else {
-                return json_encode(array(
-                    "status" => "error",
-                    "reason" => "User already exists",
                 ));
             }
         }

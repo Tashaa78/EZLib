@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . "/classes/System.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/Web_Server/classes/System.php";
 
 use \EZLib\System as System;
 

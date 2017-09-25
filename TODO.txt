@@ -1,0 +1,15 @@
+User Information
+----------------
+
+Username
+IP Address
+Hardware ID
+Session GUID
+License
+License Expiration Date
+
+System
+------
+
+Global Message
+Server Variable
