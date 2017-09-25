@@ -41,7 +41,7 @@ namespace EZLib
             } else {
                 return false;
             }
-        } // Checks if Username exists
+        } // Checks if username exists
         public function ipAddressExist($ip_address)
         {
             $query = $this->database()->prepare("SELECT * FROM `users` WHERE `ip_address`=?");
@@ -125,6 +125,53 @@ namespace EZLib
                 return json_encode(array(
                     "status" => "error",
                     "reason" => "Program ID does not exist",
+                ));
+            }
+        }
+
+        // User
+        public function validateLogin($service, $username, $password, $hardware_id) // Checks if user has authenticated correctly
+        {
+            if ($service == "website") {
+                // Adding when website is being worked on
+            } elseif ($service == "ezlib") {
+                if ($this->usernameExist("{$username}")) {
+                    $query = $this->database()->prepare("SELECT * FROM `users` WHERE `username`=? AND `hardware_id`=? LIMIT 1");
+                    $query->bindParam(1, $username);
+                    $query->bindParam(2, $hardware_id);
+                    $query->execute();
+                    $array = $query->fetch(\PDO::FETCH_ASSOC);
+
+                    if (password_verify("{$password}", "{$array['password']}")) {
+                        if ($hardware_id == $array['hardware_id']) {
+                            return json_encode(array(
+                                "status" => "success",
+                                "username" => "{$username}",
+                                "hardware_id" => "{$hardware_id}",
+                                "ip_address" => "{$_SERVER['REMOTE_ADDR']}",
+                            ));
+                        } else {
+                            return json_encode(array(
+                                "status" => "error",
+                                "reason" => "Hardware ID does not match",
+                            ));
+                        }
+                    } else {
+                        return json_encode(array(
+                            "status" => "error",
+                            "reason" => "Password is incorrect",
+                        ));
+                    }
+                } else {
+                    return json_encode(array(
+                        "status" => "error",
+                        "reason" => "User does not exist",
+                    ));
+                }
+            } else {
+                return json_encode(array(
+                    "status" => "error",
+                    "reason" => "Unknown service parameter"
                 ));
             }
         }
