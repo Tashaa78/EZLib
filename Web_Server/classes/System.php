@@ -70,9 +70,12 @@ namespace EZLib
                 $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=? LIMIT 1");
                 $query->bindParam(1, $program_id);
                 $query->execute();
+                $array = $query->fetch(\PDO::FETCH_ASSOC);
 
-                while ($array = $query->fetch(\PDO::FETCH_ASSOC)) {
+                if ($array > 0) {
                     return $array["program_name"];
+                } else {
+                    return "error";
                 }
             } else {
                 return json_encode(array(

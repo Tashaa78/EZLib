@@ -26,21 +26,7 @@ namespace EZLib.UserControls
         {
             if (box_Username.Text == "" || box_Password.Text == "")
             {
-                Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                formControl.StartPosition = FormStartPosition.Manual;
-                formControl.ShowIcon = false;
-                formControl.ShowInTaskbar = false;
-                formControl.Opacity = 95;
-                formControl.Top = 60;
-                formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                UserControls.Alert_Messages.alertMessage r_alertMessage = new UserControls.Alert_Messages.alertMessage("Username and Password fields are required", UserControls.Alert_Messages.alertMessage.AlertType.information);
-                r_alertMessage.Dock = DockStyle.Fill;
-
-                formControl.Controls.Add(r_alertMessage);
-
-                formControl.ShowDialog();
+                apiAccess.messageHandler("Username and Password fields required", "warning");
             } else
             {
                 apiAccess.loginApi(box_Username.Text, box_Password.Text);

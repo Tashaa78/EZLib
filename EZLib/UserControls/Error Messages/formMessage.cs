@@ -8,7 +8,6 @@ namespace EZLib.UserControls.Error_Messages
         public formMessage(string exceptionName, string exceptionMessage)
         {
             InitializeComponent();
-
             box_Error.Text = "Exception Name: " + exceptionName + "\r\n\r\nException Message: " + exceptionMessage;
         }
 

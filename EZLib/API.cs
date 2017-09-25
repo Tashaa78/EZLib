@@ -7,6 +7,8 @@ namespace EZLib
     internal class apiAccess
     {
         internal static string currentUsername;
+        internal static string currentProgramId;
+        internal static string currentProgramName;
 
         internal static Form loginForm = new formControl();
         internal static Form loaderForm = new formControl();
@@ -126,8 +128,16 @@ namespace EZLib
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
                     webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
 
-                    if (webResponse.Length > 1)
+                    if (webResponse.Contains("error"))
                     {
+                        messageHandler("This program ID is either banned or does not exist", "error");
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        currentProgramId = inputId;
+                        currentProgramName = webResponse;
+
                         loginForm.ShowIcon = false;
                         loginForm.ShowInTaskbar = false;
                         loginForm.StartPosition = FormStartPosition.CenterScreen;
@@ -138,10 +148,6 @@ namespace EZLib
                         loginForm.Controls.Add(loginControl);
 
                         loginForm.ShowDialog();
-                    }
-                    else if (webResponse.Contains("error"))
-                    {
-                        messageHandler("This program ID is either banned or does not exist", "error");
                     }
                 }
             }
@@ -171,7 +177,7 @@ namespace EZLib
             }
         }
 
-        private static void exceptionHandler(Exception ex)
+        internal static void exceptionHandler(Exception ex)
         {
             Form formControl = new EZLib.UserControls.Error_Messages.formMessage(ex.GetType().Name, ex.Message);
 
@@ -181,7 +187,7 @@ namespace EZLib
 
             formControl.ShowDialog();
         }
-        private static void messageHandler(string message, string type)
+        internal static void messageHandler(string message, string type)
         {
             Form formControl = new UserControls.Alert_Messages.formMessage();
 
@@ -192,7 +198,8 @@ namespace EZLib
             formControl.Top = 60;
             formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
 
-            UserControls.Alert_Messages.alertMessage alertMessage = new UserControls.Alert_Messages.alertMessage(message, type);
+            UserControls.Alert_Messages.alertMessage alertMessage = new UserControls.Alert_Messages.alertMessage();
+            alertMessage.message(message, type);
 
             formControl.Controls.Add(alertMessage);
 
