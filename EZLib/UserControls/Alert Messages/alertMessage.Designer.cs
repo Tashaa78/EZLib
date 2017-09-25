@@ -66,7 +66,6 @@
             this.DoubleBuffered = true;
             this.Name = "alertMessage";
             this.Size = new System.Drawing.Size(363, 95);
-            this.Load += new System.EventHandler(this.alertMessage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
