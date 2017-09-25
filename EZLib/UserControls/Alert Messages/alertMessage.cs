@@ -12,31 +12,26 @@ namespace EZLib.UserControls.Alert_Messages
 {
     internal partial class alertMessage : UserControl
     {
-        public alertMessage(string message, AlertType type)
+        public alertMessage(string message, string type)
         {
             InitializeComponent();
 
             label_Message.Text = message;
             switch (type)
             {
-                case AlertType.success:
+                case "success":
                     this.BackColor = Color.SeaGreen;
                     break;
-                case AlertType.error:
+                case "error":
                     this.BackColor = Color.Firebrick;
                     break;
-                case AlertType.information:
+                case "information":
                     this.BackColor = Color.SkyBlue;
                     break;
-                case AlertType.warning:
+                case "warning":
                     this.BackColor = Color.DarkOrange;
                     break;
             }
-        }
-
-        public enum AlertType
-        {
-            success, information, error, warning
         }
 
         private void alertMessage_Load(object sender, EventArgs e)

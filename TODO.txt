@@ -5,7 +5,7 @@ Username
 IP Address
 Hardware ID
 Session GUID
-License
+License Key
 License Expiration Date
 
 System

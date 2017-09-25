@@ -17,7 +17,7 @@ namespace EZLib
             {
                 string inputUsername = username;
                 string inputPassword = password;
-                string inputIPAddress = "0.0.0.0";
+                string inputIPAddress = apiAccess.ipAddressApi();
                 string inputHardwareId = Hardware_ID.Generate();
 
                 string webResponse;
@@ -27,25 +27,11 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
 
                     if (webResponse.Contains("success"))
                     {
-                        Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                        formControl.StartPosition = FormStartPosition.Manual;
-                        formControl.ShowIcon = false;
-                        formControl.ShowInTaskbar = false;
-                        formControl.Opacity = 95;
-                        formControl.Top = 60;
-                        formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                        UserControls.Alert_Messages.alertMessage r_alertMessage  = new UserControls.Alert_Messages.alertMessage("You have successfully registered", UserControls.Alert_Messages.alertMessage.AlertType.success);
-                        r_alertMessage.Dock = DockStyle.Fill;
-
-                        formControl.Controls.Add(r_alertMessage);
-
-                        formControl.ShowDialog();
+                        messageHandler("You have successfully registered", "success");
                     } else if (webResponse.Contains("error"))
                     {
                         if (webResponse.Contains("Parameter missing"))
@@ -53,45 +39,17 @@ namespace EZLib
                             Environment.Exit(0);
                         } else if (webResponse.Contains("User already exists"))
                         {
-                            Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                            formControl.StartPosition = FormStartPosition.Manual;
-                            formControl.ShowIcon = false;
-                            formControl.ShowInTaskbar = false;
-                            formControl.Opacity = 95;
-                            formControl.Top = 60;
-                            formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                            UserControls.Alert_Messages.alertMessage r_alertMessage = new UserControls.Alert_Messages.alertMessage("This username already exists", UserControls.Alert_Messages.alertMessage.AlertType.warning);
-                            r_alertMessage.Dock = DockStyle.Fill;
-
-                            formControl.Controls.Add(r_alertMessage);
-
-                            formControl.ShowDialog();
+                            messageHandler("This username is already taken", "warning");
                         } else if (webResponse.Contains("IP address found"))
                         {
-                            Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                            formControl.StartPosition = FormStartPosition.Manual;
-                            formControl.ShowIcon = false;
-                            formControl.ShowInTaskbar = false;
-                            formControl.Opacity = 95;
-                            formControl.Top = 60;
-                            formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                            UserControls.Alert_Messages.alertMessage r_alertMessage = new UserControls.Alert_Messages.alertMessage("You have already registered once", UserControls.Alert_Messages.alertMessage.AlertType.error);
-                            r_alertMessage.Dock = DockStyle.Fill;
-
-                            formControl.Controls.Add(r_alertMessage);
-
-                            formControl.ShowDialog();
+                            messageHandler("You have already regisrted once", "error");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                exceptionHandler(ex);
             }
         }
         public static void loginApi(string username, string password)
@@ -109,7 +67,7 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
 
                     if (webResponse.Contains("success"))
                     {
@@ -136,63 +94,21 @@ namespace EZLib
                         }
                         else if (webResponse.Contains("Password is incorrect"))
                         {
-                            Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                            formControl.StartPosition = FormStartPosition.Manual;
-                            formControl.ShowIcon = false;
-                            formControl.ShowInTaskbar = false;
-                            formControl.Opacity = 95;
-                            formControl.Top = 60;
-                            formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                            UserControls.Alert_Messages.alertMessage l_alertMessage = new UserControls.Alert_Messages.alertMessage("Your password is incorrect, try again", UserControls.Alert_Messages.alertMessage.AlertType.warning);
-                            l_alertMessage.Dock = DockStyle.Fill;
-
-                            formControl.Controls.Add(l_alertMessage);
-
-                            formControl.ShowDialog();
+                            messageHandler("Your password is incorrect, please try again", "warning");
                         }
                         else if (webResponse.Contains("Hardware ID does not match"))
                         {
-                            Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                            formControl.StartPosition = FormStartPosition.Manual;
-                            formControl.ShowIcon = false;
-                            formControl.ShowInTaskbar = false;
-                            formControl.Opacity = 95;
-                            formControl.Top = 60;
-                            formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                            UserControls.Alert_Messages.alertMessage l_alertMessage = new UserControls.Alert_Messages.alertMessage("Your Harware ID does not match", UserControls.Alert_Messages.alertMessage.AlertType.error);
-                            l_alertMessage.Dock = DockStyle.Fill;
-
-                            formControl.Controls.Add(l_alertMessage);
-
-                            formControl.ShowDialog();
+                            messageHandler("Your Hardware ID does not match", "error");
                         } else if (webResponse.Contains("User does not exist"))
                         {
-                            Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                            formControl.StartPosition = FormStartPosition.Manual;
-                            formControl.ShowIcon = false;
-                            formControl.ShowInTaskbar = false;
-                            formControl.Opacity = 95;
-                            formControl.Top = 60;
-                            formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                            UserControls.Alert_Messages.alertMessage l_alertMessage = new UserControls.Alert_Messages.alertMessage("This account does not exist", UserControls.Alert_Messages.alertMessage.AlertType.warning);
-                            l_alertMessage.Dock = DockStyle.Fill;
-
-                            formControl.Controls.Add(l_alertMessage);
-
-                            formControl.ShowDialog();
+                            messageHandler("This account does not exist", "error");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occcured! Error: " + ex.Message);
+                exceptionHandler(ex);
             }
         }
         public static void authProgramApi(string programId)
@@ -208,9 +124,9 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
 
-                    if (webResponse.Contains("success"))
+                    if (webResponse.Length > 1)
                     {
                         loginForm.ShowIcon = false;
                         loginForm.ShowInTaskbar = false;
@@ -225,26 +141,13 @@ namespace EZLib
                     }
                     else if (webResponse.Contains("error"))
                     {
-                        Form formControl = new UserControls.Alert_Messages.formMessage();
-
-                        formControl.StartPosition = FormStartPosition.Manual;
-                        formControl.ShowIcon = false;
-                        formControl.ShowInTaskbar = false;
-                        formControl.Opacity = 95;
-                        formControl.Top = 60;
-                        formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
-
-                        UserControls.Alert_Messages.alertMessage alertMessage = new UserControls.Alert_Messages.alertMessage("This program ID is banned or does not exist", UserControls.Alert_Messages.alertMessage.AlertType.error);
-
-                        formControl.Controls.Add(alertMessage);
-
-                        formControl.ShowDialog();
+                        messageHandler("This program ID is either banned or does not exist", "error");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occurred. Error: " + ex.Message);
+                exceptionHandler(ex);
             }
         }
         public static string ipAddressApi()
@@ -258,17 +161,42 @@ namespace EZLib
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
                     webResponse = webClient.DownloadString("http://icanhazip.com/");
-
                     return webResponse;
                 }
-
-                return webResponse;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occurred. Error:" + ex.Message);
-                return ex.Message;
+                exceptionHandler(ex);
+                return "An error has occurred";
             }
+        }
+
+        private static void exceptionHandler(Exception ex)
+        {
+            Form formControl = new EZLib.UserControls.Error_Messages.formMessage(ex.GetType().Name, ex.Message);
+
+            formControl.StartPosition = FormStartPosition.CenterScreen;
+            formControl.ShowIcon = false;
+            formControl.ShowInTaskbar = false;
+
+            formControl.ShowDialog();
+        }
+        private static void messageHandler(string message, string type)
+        {
+            Form formControl = new UserControls.Alert_Messages.formMessage();
+
+            formControl.StartPosition = FormStartPosition.Manual;
+            formControl.ShowIcon = false;
+            formControl.ShowInTaskbar = false;
+            formControl.Opacity = 95;
+            formControl.Top = 60;
+            formControl.Left = Screen.PrimaryScreen.Bounds.Width - formControl.Width - 60;
+
+            UserControls.Alert_Messages.alertMessage alertMessage = new UserControls.Alert_Messages.alertMessage(message, type);
+
+            formControl.Controls.Add(alertMessage);
+
+            formControl.ShowDialog();
         }
     }
 }
