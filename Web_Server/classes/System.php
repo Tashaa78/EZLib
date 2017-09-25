@@ -32,7 +32,7 @@ namespace EZLib
         } // Quick checks for errors etc.
         public function usernameExist($username)
         {
-            $query = $this->database()->prepare("SELECT * FROM `users` WHERE `username`=?");
+            $query = $this->database()->prepare("SELECT * FROM `users` WHERE `username`=? LIMIT 1");
             $query->bindParam(1, $username);
             $query->execute();
 
@@ -44,7 +44,7 @@ namespace EZLib
         } // Checks if username exists
         public function ipAddressExist($ip_address)
         {
-            $query = $this->database()->prepare("SELECT * FROM `users` WHERE `ip_address`=?");
+            $query = $this->database()->prepare("SELECT * FROM `users` WHERE `ip_address`=? LIMIT 1");
             $query->bindParam(1, $ip_address);
             $query->execute();
 
@@ -57,7 +57,7 @@ namespace EZLib
         public function programIdExist($service, $program_id)
         {
             if ($service == "website") {
-                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=?");
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=? LIMIT 1");
                 $query->bindParam(1, $program_id);
                 $query->execute();
 
@@ -67,7 +67,7 @@ namespace EZLib
                     return false;
                 }
             } elseif ($service == "ezlib") {
-                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=?");
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=? LIMIT 1");
                 $query->bindParam(1, $program_id);
                 $query->execute();
 
