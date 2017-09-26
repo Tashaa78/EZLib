@@ -28,9 +28,9 @@ namespace EZLib.UserControls
                 currentCaptcha = webResponse;
 
                 var image = new Bitmap(this.captcha.Width, this.captcha.Height);
-                var font = new Font("Comic Sans", 25, FontStyle.Strikeout, GraphicsUnit.Pixel);
+                var font = new Font("Comic Sans MS", 25, FontStyle.Strikeout, GraphicsUnit.Pixel);
                 var captcha = Graphics.FromImage(image);
-                captcha.DrawString(webResponse, font, Brushes.Firebrick, new Point(0, 0));
+                captcha.DrawString(webResponse, font, Brushes.SkyBlue, new Point(0, 0));
                 this.captcha.Image = image;
                 this.captcha.Refresh();
             }
