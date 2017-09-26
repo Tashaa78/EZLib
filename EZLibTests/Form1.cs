@@ -7,7 +7,7 @@ namespace EZLibTests
         public Form1()
         {
             InitializeComponent();
-            EZLib.Startup.authProgram("5994393");
+            EZLib.Startup.authProgram("0DCKDWOTF");
         }
 
         private void Form1_Load(object sender, System.EventArgs e)
