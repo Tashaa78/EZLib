@@ -6,6 +6,7 @@ namespace EZLib
 {
     internal class apiAccess
     {
+        internal static string currentCaptcha;
         internal static string currentUsername;
         internal static string currentProgramId;
         internal static string currentProgramName;
@@ -19,7 +20,7 @@ namespace EZLib
             {
                 string inputUsername = username;
                 string inputPassword = password;
-                string inputIPAddress = apiAccess.ipAddressApi();
+                string inputIPAddress = ipAddressApi();
                 string inputHardwareId = Hardware_ID.Generate();
 
                 string webResponse;
@@ -166,6 +167,28 @@ namespace EZLib
                 }
             }
             catch (Exception ex)
+            {
+                exceptionHandler(ex);
+                return "An error has occurred";
+            }
+        }
+        public static string randomCaptchaApi()
+        {
+            try
+            {
+                string webResponse;
+                string postData = "action=randomCaptcha";
+
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Proxy = null;
+                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
+
+                    currentCaptcha = webResponse;
+                    return currentCaptcha;
+                }
+            } catch (Exception ex)
             {
                 exceptionHandler(ex);
                 return "An error has occurred";

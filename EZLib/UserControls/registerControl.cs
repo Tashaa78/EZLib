@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,8 +6,6 @@ namespace EZLib.UserControls
 {
     internal partial class registerControl : UserControl
     {
-        internal string currentCaptcha;
-
         public registerControl()
         {
             InitializeComponent();
@@ -16,23 +13,29 @@ namespace EZLib.UserControls
 
         private void registerControl_Load(object sender, EventArgs e)
         {
-            string webResponse;
-            string postData = "action=randomCaptcha";
+            var image = new Bitmap(this.captcha.Width, this.captcha.Height);
+            var font = new Font("Comic Sans MS", 25, FontStyle.Strikeout, GraphicsUnit.Pixel);
+            var captcha = Graphics.FromImage(image);
+            captcha.DrawString(apiAccess.randomCaptchaApi(), font, Brushes.SkyBlue, new Point(0, 0));
+            this.captcha.Image = image;
+            this.captcha.Refresh();
+        }
 
-            using (WebClient webClient = new WebClient())
+        private void button_Register_Click(object sender, EventArgs e)
+        {
+            if (box_Username.Text == "" || box_Password.Text == "")
             {
-                webClient.Proxy = null;
-                webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
-
-                currentCaptcha = webResponse;
-
-                var image = new Bitmap(this.captcha.Width, this.captcha.Height);
-                var font = new Font("Comic Sans MS", 25, FontStyle.Strikeout, GraphicsUnit.Pixel);
-                var captcha = Graphics.FromImage(image);
-                captcha.DrawString(webResponse, font, Brushes.SkyBlue, new Point(0, 0));
-                this.captcha.Image = image;
-                this.captcha.Refresh();
+                apiAccess.messageHandler("Username and Password fields required", "warning");
+            }
+            else
+            {
+                if (box_captcha.Text == apiAccess.currentCaptcha)
+                {
+                    apiAccess.registerApi(box_Username.Text, box_Password.Text);
+                } else
+                {
+                    apiAccess.messageHandler("Captcha does not match", "warning");
+                }
             }
         }
     }

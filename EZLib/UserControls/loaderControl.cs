@@ -22,7 +22,7 @@ namespace EZLib.UserControls
                 load_time.Interval++;
             } else
             {
-                EZLib.apiAccess.loaderForm.Close();
+                apiAccess.loaderForm.Close();
             }
         }
     }
