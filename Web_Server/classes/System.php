@@ -55,83 +55,7 @@ namespace EZLib
                 return false;
             }
         }
-        public function programIdExist($service, $program_id) // Checks if program ID exists
-        {
-            if ($service == "website") {
-                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
-                $query->bindParam(1, $program_id);
-                $query->execute();
 
-                if ($query->fetch(\PDO::FETCH_ASSOC) > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } elseif ($service == "ezlib") {
-                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
-                $query->bindParam(1, $program_id);
-                $query->execute();
-                $array = $query->fetch(\PDO::FETCH_ASSOC);
-
-                if ($array > 0) {
-                    return $array["program_name"];
-                } else {
-                    return "error";
-                }
-            } else {
-                return json_encode(array(
-                    "status" => "error",
-                    "reason" => "Unknown service parameter",
-                ));
-            }
-        }
-        public function isLicensed($program_id, $username) // Checks if user has a license with the provided program ID
-        {
-            if ($this->programIdExist("website", "{$program_id}")) {
-                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `license_holder`=?");
-                $query->bindParam(1, $program_id);
-                $query->bindParam(2, $username);
-                $query->execute();
-                $array = $query->fetch(\PDO::FETCH_ASSOC);
-
-                if ($array > 0) {
-                    $today = date("M d Y");
-                    $todayDate = new \DateTime("{$today}");
-                    $expiryDate = new \DateTime("{$array['license_expiry']}");
-
-                    if ($array['license_active'] == "1" || 1) {
-                        if ($todayDate <= $expiryDate) {
-                            return json_encode(array(
-                                "status" => "success",
-                                "username" => "{$username}",
-                                "license" => "{$array['program_license']}",
-                                "expiry_date" => "{$array['license_expiry']}",
-                            ));
-                        } else {
-                            return json_encode(array(
-                                "status" => "error",
-                                "reason" => "License Key is expired",
-                            ));
-                        }
-                    } else {
-                        return json_encode(array(
-                            "status" => "error",
-                            "reason" => "License Key is not active/banned",
-                        ));
-                    }
-                } else {
-                    return json_encode(array(
-                        "status" => "error",
-                        "reason" => "User does not have a license key",
-                    ));
-                }
-            } else {
-                return json_encode(array(
-                    "status" => "error",
-                    "reason" => "Program ID does not exist",
-                ));
-            }
-        }
 
         // User
         public function validateLogin($service, $username, $password, $hardware_id) // Checks if user has authenticated correctly
@@ -211,6 +135,108 @@ namespace EZLib
                         "reason" => "Username is taken",
                     ));
                 }
+            }
+        }
+
+        // Program
+        public function programIdExist($service, $program_id) // Checks if program ID exists
+        {
+            if ($service == "website") {
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
+                $query->bindParam(1, $program_id);
+                $query->execute();
+
+                if ($query->fetch(\PDO::FETCH_ASSOC) > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } elseif ($service == "ezlib") {
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
+                $query->bindParam(1, $program_id);
+                $query->execute();
+                $array = $query->fetch(\PDO::FETCH_ASSOC);
+
+                if ($array > 0) {
+                    return $array["program_name"];
+                } else {
+                    return "error";
+                }
+            } else {
+                return json_encode(array(
+                    "status" => "error",
+                    "reason" => "Unknown service parameter",
+                ));
+            }
+        }
+        public function isLicensed($program_id, $username) // Checks if user has a license with the provided program ID
+        {
+            if ($this->programIdExist("website", "{$program_id}")) {
+                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `license_holder`=?");
+                $query->bindParam(1, $program_id);
+                $query->bindParam(2, $username);
+                $query->execute();
+                $array = $query->fetch(\PDO::FETCH_ASSOC);
+
+                if ($array > 0) {
+                    $today = date("M d Y");
+                    $todayDate = new \DateTime("{$today}");
+                    $expiryDate = new \DateTime("{$array['license_expiry']}");
+
+                    if ($array['license_active'] == "1" || 1) {
+                        if ($todayDate <= $expiryDate) {
+                            return json_encode(array(
+                                "status" => "success",
+                                "username" => "{$username}",
+                                "license" => "{$array['program_license']}",
+                                "expiry_date" => "{$array['license_expiry']}",
+                            ));
+                        } else {
+                            return json_encode(array(
+                                "status" => "error",
+                                "reason" => "License Key is expired",
+                            ));
+                        }
+                    } else {
+                        return json_encode(array(
+                            "status" => "error",
+                            "reason" => "License Key is not active/banned",
+                        ));
+                    }
+                } else {
+                    return json_encode(array(
+                        "status" => "error",
+                        "reason" => "User does not have a license key",
+                    ));
+                }
+            } else {
+                return json_encode(array(
+                    "status" => "error",
+                    "reason" => "Program ID does not exist",
+                ));
+            }
+        }
+        public function logException($program_id, $exception_name, $exception_message) // Logs the program exception
+        {
+            if ($this->programIdExist("website", "{$program_id}")) {
+                $today = date("M d Y");
+
+                $query = $this->database()->prepare("INSERT INTO `program_exception_logs` (program_id, exception_name, exception_message, date_found) VALUES (?, ?, ?, ?)");
+                $query->bindParam(1, $program_id);
+                $query->bindParam(2, $exception_name);
+                $query->bindParam(3, $exception_message);
+                $query->bindParam(4, $today);
+                $query->execute();
+
+                return json_encode(array(
+                    "status" => "success",
+                    "program_id" => "{$program_id}",
+                ));
+            } else {
+                return json_encode(array(
+                    "status" => "error",
+                    "reason" => "Program ID does not exist",
+                ));
             }
         }
     }

@@ -155,6 +155,31 @@ namespace EZLib
                 exceptionHandler(ex);
             }
         }
+        public static void logExceptionApi(string programId, Exception ex)
+        {
+            try
+            {
+                string inputId = programId;
+                string inputName = ex.GetType().Name;
+                string inputMessage = ex.Message;
+
+                string webResponse;
+                string postData = "action=logException&authCode=" + authCode + "&programId=" + inputId + "&exceptionName=" + inputName + "&exceptionMessage=" + inputMessage;
+
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Proxy = null;
+                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                    webResponse = webClient.DownloadString(baseUrl + postData);
+                }
+            }
+            catch (Exception exception)
+            {
+                exceptionHandler(exception);
+            }
+        }
+
+
         public static string ipAddressApi()
         {
             try
@@ -197,10 +222,13 @@ namespace EZLib
                 return "An error has occurred";
             }
         }
+        
 
-        internal static void exceptionHandler(Exception ex)
+        public static void exceptionHandler(Exception ex)
         {
-            Form formControl = new EZLib.UserControls.Error_Messages.formMessage(ex.GetType().Name, ex.Message);
+            logExceptionApi(currentProgramId, ex);
+
+            Form formControl = new UserControls.Error_Messages.formMessage(ex.GetType().Name, ex.Message);
 
             formControl.StartPosition = FormStartPosition.CenterScreen;
             formControl.ShowIcon = false;
