@@ -29,7 +29,7 @@ if (isset($_GET['action'])) {
             $hardware_id = $_GET['hardware_id'];
 
             header("content-type: application/json");
-            //echo $System->registerClient("{$username}", "{$password}", "{$ip_address}", "{$hardware_id}");
+            echo $System->registerUser("ezlib", "{$username}", "{$password}", "{$ip_address}", "{$hardware_id}");
         } else {
             header("content-type: application/json");
             echo json_encode(array(

@@ -7,7 +7,7 @@ namespace EZLib
         private $errorReporting = false;
 
         // Database
-        public function database()
+        public function database() // Connects to the database
         {
             try {
                 $connection = new \PDO("mysql:host=127.0.0.1;dbname=ezlib", "root", "");
@@ -20,7 +20,7 @@ namespace EZLib
         }
 
         // Quick Checks
-        public function varChecks()
+        public function varChecks() // Quick checks for errors etc.
         {
             if ($this->errorReporting === TRUE) {
                 ini_set('display_errors', 1);
@@ -29,8 +29,8 @@ namespace EZLib
             } else {
                 error_reporting(0);
             }
-        } // Quick checks for errors etc.
-        public function usernameExist($username)
+        }
+        public function usernameExist($username) // Checks if username exists
         {
             $query = $this->database()->prepare("SELECT * FROM `users` WHERE `username`=? LIMIT 1");
             $query->bindParam(1, $username);
@@ -41,8 +41,8 @@ namespace EZLib
             } else {
                 return false;
             }
-        } // Checks if username exists
-        public function ipAddressExist($ip_address)
+        }
+        public function ipAddressExist($ip_address) // Checks if IP Address exists
         {
             $query = $this->database()->prepare("SELECT * FROM `users` WHERE `ip_address`=? LIMIT 1");
             $query->bindParam(1, $ip_address);
@@ -53,8 +53,8 @@ namespace EZLib
             } else {
                 return false;
             }
-        } // Checks if IP Address exists
-        public function programIdExist($service, $program_id)
+        }
+        public function programIdExist($service, $program_id) // Checks if program ID exists
         {
             if ($service == "website") {
                 $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
@@ -83,8 +83,8 @@ namespace EZLib
                     "reason" => "Unknown service parameter",
                 ));
             }
-        } // Checks if program ID exists
-        public function isLicensed($program_id, $username) // Checks if user has a license with the provided program ID.
+        }
+        public function isLicensed($program_id, $username) // Checks if user has a license with the provided program ID
         {
             if ($this->programIdExist("website", "{$program_id}")) {
                 $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `license_holder`=?");
@@ -176,6 +176,40 @@ namespace EZLib
                     "status" => "error",
                     "reason" => "Unknown service parameter"
                 ));
+            }
+        }
+        public function registerUser($service, $username, $password, $ip_address, $hardware_id) // Registers the user
+        {
+            if ($service == "website") {
+                // Adding when website is being worked on
+            } elseif ($service == "ezlib") {
+                if (!$this->usernameExist("{$username}")) {
+                    if (!$this->ipAddressExist("{$ip_address}")) {
+                        $encrypted_password = password_hash("{$password}", PASSWORD_DEFAULT, ['cost' => 12]);
+
+                        $query = $this->database()->prepare("INSERT INTO `users` (username, password, ip_address, hardware_id) VALUES (?, ?, ?, ?)");
+                        $query->bindParam(1, $username);
+                        $query->bindParam(2, $encrypted_password);
+                        $query->bindParam(3, $ip_address);
+                        $query->bindParam(4, $hardware_id);
+                        $query->execute();
+
+                        return json_encode(array(
+                            "status" => "success",
+                            "username" => "{$username}",
+                        ));
+                    } else {
+                        return json_encode(array(
+                            "status" => "error",
+                            "reason" => "User has already registered once",
+                        ));
+                    }
+                } else {
+                    return json_encode(array(
+                        "status" => "error",
+                        "reason" => "Username is taken",
+                    ));
+                }
             }
         }
     }
