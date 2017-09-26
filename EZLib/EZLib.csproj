@@ -93,6 +93,18 @@
     <Compile Include="UserControls\loginControl.Designer.cs">
       <DependentUpon>loginControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="mainControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainControl.Designer.cs">
+      <DependentUpon>mainControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\registerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\registerControl.Designer.cs">
+      <DependentUpon>registerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInformation.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loginControl.resx">
       <DependentUpon>loginControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mainControl.resx">
+      <DependentUpon>mainControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\registerControl.resx">
+      <DependentUpon>registerControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

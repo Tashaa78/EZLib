@@ -64,6 +64,9 @@ if (isset($_GET['action'])) {
                 "reason" => "Parameter missing",
             ));
         }
+    } elseif ($action == "randomCaptcha") {
+        $captcha = bin2hex(random_bytes(5));
+        echo substr("{$captcha}", 0, 6);
     }
 } else {
     header("content-type: application/json");

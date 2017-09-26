@@ -30,51 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(loginControl));
-            this.panel_Control = new System.Windows.Forms.Panel();
-            this.button_Close = new System.Windows.Forms.Panel();
-            this.label_EZLib = new System.Windows.Forms.Label();
             this.button_Login = new Bunifu.Framework.UI.BunifuFlatButton();
             this.box_Username = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.button_Register = new System.Windows.Forms.Label();
             this.box_Password = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.elipse = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.drag_control = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.label_Status = new System.Windows.Forms.Label();
-            this.panel_Status = new System.Windows.Forms.Panel();
-            this.panel_Control.SuspendLayout();
-            this.panel_Status.SuspendLayout();
+            this.icon = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel_Control
-            // 
-            this.panel_Control.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel_Control.Controls.Add(this.button_Close);
-            this.panel_Control.Controls.Add(this.label_EZLib);
-            this.panel_Control.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Control.ForeColor = System.Drawing.Color.Transparent;
-            this.panel_Control.Location = new System.Drawing.Point(0, 0);
-            this.panel_Control.Name = "panel_Control";
-            this.panel_Control.Size = new System.Drawing.Size(442, 34);
-            this.panel_Control.TabIndex = 2;
-            // 
-            // button_Close
-            // 
-            this.button_Close.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button_Close.BackgroundImage")));
-            this.button_Close.Location = new System.Drawing.Point(411, 5);
-            this.button_Close.Name = "button_Close";
-            this.button_Close.Size = new System.Drawing.Size(24, 24);
-            this.button_Close.TabIndex = 3;
-            this.button_Close.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button_Close_MouseClick);
-            // 
-            // label_EZLib
-            // 
-            this.label_EZLib.AutoSize = true;
-            this.label_EZLib.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_EZLib.Location = new System.Drawing.Point(3, 7);
-            this.label_EZLib.Name = "label_EZLib";
-            this.label_EZLib.Size = new System.Drawing.Size(46, 20);
-            this.label_EZLib.TabIndex = 3;
-            this.label_EZLib.Text = "EZLib";
             // 
             // button_Login
             // 
@@ -95,21 +58,21 @@
             this.button_Login.IconMarginRight = 0;
             this.button_Login.IconRightVisible = true;
             this.button_Login.IconRightZoom = 0D;
-            this.button_Login.IconVisible = true;
+            this.button_Login.IconVisible = false;
             this.button_Login.IconZoom = 90D;
             this.button_Login.IsTab = false;
-            this.button_Login.Location = new System.Drawing.Point(244, 158);
+            this.button_Login.Location = new System.Drawing.Point(300, 256);
             this.button_Login.Name = "button_Login";
             this.button_Login.Normalcolor = System.Drawing.SystemColors.Highlight;
             this.button_Login.OnHovercolor = System.Drawing.SystemColors.HotTrack;
             this.button_Login.OnHoverTextColor = System.Drawing.Color.White;
             this.button_Login.selected = false;
-            this.button_Login.Size = new System.Drawing.Size(135, 37);
+            this.button_Login.Size = new System.Drawing.Size(93, 37);
             this.button_Login.TabIndex = 3;
             this.button_Login.Text = "Sign In";
-            this.button_Login.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Login.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.button_Login.Textcolor = System.Drawing.Color.White;
-            this.button_Login.TextFont = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Login.TextFont = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
             // 
             // box_Username
@@ -124,23 +87,12 @@
             this.box_Username.LineIdleColor = System.Drawing.Color.Gray;
             this.box_Username.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_Username.LineThickness = 1;
-            this.box_Username.Location = new System.Drawing.Point(77, 77);
+            this.box_Username.Location = new System.Drawing.Point(91, 175);
             this.box_Username.Margin = new System.Windows.Forms.Padding(4);
             this.box_Username.Name = "box_Username";
             this.box_Username.Size = new System.Drawing.Size(302, 33);
             this.box_Username.TabIndex = 5;
             this.box_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // button_Register
-            // 
-            this.button_Register.AutoSize = true;
-            this.button_Register.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Register.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button_Register.Location = new System.Drawing.Point(74, 167);
-            this.button_Register.Name = "button_Register";
-            this.button_Register.Size = new System.Drawing.Size(55, 17);
-            this.button_Register.TabIndex = 4;
-            this.button_Register.Text = "Sign Up";
             // 
             // box_Password
             // 
@@ -154,7 +106,7 @@
             this.box_Password.LineIdleColor = System.Drawing.Color.Gray;
             this.box_Password.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_Password.LineThickness = 1;
-            this.box_Password.Location = new System.Drawing.Point(77, 118);
+            this.box_Password.Location = new System.Drawing.Point(91, 216);
             this.box_Password.Margin = new System.Windows.Forms.Padding(4);
             this.box_Password.Name = "box_Password";
             this.box_Password.Size = new System.Drawing.Size(302, 33);
@@ -171,64 +123,39 @@
             // 
             this.drag_control.Fixed = true;
             this.drag_control.Horizontal = true;
-            this.drag_control.TargetControl = this.panel_Control;
             this.drag_control.Vertical = true;
             // 
-            // label_Status
+            // icon
             // 
-            this.label_Status.AutoSize = true;
-            this.label_Status.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Status.Location = new System.Drawing.Point(164, 7);
-            this.label_Status.Name = "label_Status";
-            this.label_Status.Size = new System.Drawing.Size(115, 13);
-            this.label_Status.TabIndex = 3;
-            this.label_Status.Text = "Copyright 2017 EZLib";
-            // 
-            // panel_Status
-            // 
-            this.panel_Status.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel_Status.Controls.Add(this.label_Status);
-            this.panel_Status.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_Status.ForeColor = System.Drawing.Color.Transparent;
-            this.panel_Status.Location = new System.Drawing.Point(0, 244);
-            this.panel_Status.Name = "panel_Status";
-            this.panel_Status.Size = new System.Drawing.Size(442, 26);
-            this.panel_Status.TabIndex = 4;
+            this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
+            this.icon.Location = new System.Drawing.Point(192, 49);
+            this.icon.Name = "icon";
+            this.icon.Size = new System.Drawing.Size(100, 100);
+            this.icon.TabIndex = 7;
+            this.icon.TabStop = false;
             // 
             // loginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.icon);
             this.Controls.Add(this.box_Password);
-            this.Controls.Add(this.button_Register);
-            this.Controls.Add(this.panel_Status);
             this.Controls.Add(this.box_Username);
             this.Controls.Add(this.button_Login);
-            this.Controls.Add(this.panel_Control);
             this.Name = "loginControl";
-            this.Size = new System.Drawing.Size(442, 270);
-            this.panel_Control.ResumeLayout(false);
-            this.panel_Control.PerformLayout();
-            this.panel_Status.ResumeLayout(false);
-            this.panel_Status.PerformLayout();
+            this.Size = new System.Drawing.Size(484, 372);
+            ((System.ComponentModel.ISupportInitialize)(this.icon)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel_Control;
-        private System.Windows.Forms.Panel button_Close;
-        private System.Windows.Forms.Label label_EZLib;
         private Bunifu.Framework.UI.BunifuFlatButton button_Login;
         private Bunifu.Framework.UI.BunifuMaterialTextbox box_Username;
-        private System.Windows.Forms.Label button_Register;
         private Bunifu.Framework.UI.BunifuMaterialTextbox box_Password;
         private Bunifu.Framework.UI.BunifuElipse elipse;
         private Bunifu.Framework.UI.BunifuDragControl drag_control;
-        private System.Windows.Forms.Label label_Status;
-        private System.Windows.Forms.Panel panel_Status;
+        private System.Windows.Forms.PictureBox icon;
     }
 }

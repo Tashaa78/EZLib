@@ -10,7 +10,7 @@ namespace EZLib
         internal static string currentProgramId;
         internal static string currentProgramName;
 
-        internal static Form loginForm = new formControl();
+        internal static Form mainForm = new mainControl();
         internal static Form loaderForm = new formControl();
 
         public static void registerApi(string username, string password)
@@ -74,7 +74,7 @@ namespace EZLib
                     if (webResponse.Contains("success"))
                     {
                         currentUsername = inputUsername;
-                        loginForm.Visible = false;
+                        mainForm.Visible = false;
 
                         loaderForm.StartPosition = FormStartPosition.Manual;
                         loaderForm.ShowIcon = false;
@@ -138,16 +138,11 @@ namespace EZLib
                         currentProgramId = inputId;
                         currentProgramName = webResponse;
 
-                        loginForm.ShowIcon = false;
-                        loginForm.ShowInTaskbar = false;
-                        loginForm.StartPosition = FormStartPosition.CenterScreen;
+                        mainForm.ShowIcon = false;
+                        mainForm.ShowInTaskbar = false;
+                        mainForm.StartPosition = FormStartPosition.CenterScreen;
 
-                        UserControls.loginControl loginControl = new UserControls.loginControl();
-                        loginControl.Dock = DockStyle.Fill;
-
-                        loginForm.Controls.Add(loginControl);
-
-                        loginForm.ShowDialog();
+                        mainForm.ShowDialog();
                     }
                 }
             }
