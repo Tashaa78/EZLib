@@ -11,6 +11,8 @@ namespace EZLib
         internal static string currentProgramId;
         internal static string currentProgramName;
 
+        internal static string baseUrl = "http://localhost/Web_Server/api/endpoint.php?"; // API Base
+
         internal static Form mainForm = new mainControl();
         internal static Form loaderForm = new formControl();
 
@@ -30,7 +32,7 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString(baseUrl + postData);
 
                     if (webResponse.Contains("success"))
                     {
@@ -70,7 +72,7 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString(baseUrl + postData);
 
                     if (webResponse.Contains("success"))
                     {
@@ -127,7 +129,7 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString(baseUrl + postData);
 
                     if (webResponse.Contains("error"))
                     {
@@ -183,7 +185,7 @@ namespace EZLib
                 {
                     webClient.Proxy = null;
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString("http://localhost/Web_Server/api/endpoint.php?" + postData);
+                    webResponse = webClient.DownloadString(baseUrl + postData);
 
                     currentCaptcha = webResponse;
                     return currentCaptcha;
