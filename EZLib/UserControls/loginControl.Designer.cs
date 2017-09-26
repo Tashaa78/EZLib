@@ -61,7 +61,7 @@
             this.button_Login.IconVisible = false;
             this.button_Login.IconZoom = 90D;
             this.button_Login.IsTab = false;
-            this.button_Login.Location = new System.Drawing.Point(300, 256);
+            this.button_Login.Location = new System.Drawing.Point(300, 271);
             this.button_Login.Name = "button_Login";
             this.button_Login.Normalcolor = System.Drawing.SystemColors.Highlight;
             this.button_Login.OnHovercolor = System.Drawing.SystemColors.HotTrack;
@@ -87,7 +87,7 @@
             this.box_Username.LineIdleColor = System.Drawing.Color.Gray;
             this.box_Username.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_Username.LineThickness = 1;
-            this.box_Username.Location = new System.Drawing.Point(91, 175);
+            this.box_Username.Location = new System.Drawing.Point(91, 190);
             this.box_Username.Margin = new System.Windows.Forms.Padding(4);
             this.box_Username.Name = "box_Username";
             this.box_Username.Size = new System.Drawing.Size(302, 33);
@@ -106,7 +106,7 @@
             this.box_Password.LineIdleColor = System.Drawing.Color.Gray;
             this.box_Password.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_Password.LineThickness = 1;
-            this.box_Password.Location = new System.Drawing.Point(91, 216);
+            this.box_Password.Location = new System.Drawing.Point(91, 231);
             this.box_Password.Margin = new System.Windows.Forms.Padding(4);
             this.box_Password.Name = "box_Password";
             this.box_Password.Size = new System.Drawing.Size(302, 33);
@@ -123,12 +123,13 @@
             // 
             this.drag_control.Fixed = true;
             this.drag_control.Horizontal = true;
+            this.drag_control.TargetControl = null;
             this.drag_control.Vertical = true;
             // 
             // icon
             // 
             this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
-            this.icon.Location = new System.Drawing.Point(192, 49);
+            this.icon.Location = new System.Drawing.Point(192, 64);
             this.icon.Name = "icon";
             this.icon.Size = new System.Drawing.Size(100, 100);
             this.icon.TabIndex = 7;

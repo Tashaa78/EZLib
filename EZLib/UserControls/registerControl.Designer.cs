@@ -44,7 +44,7 @@
             // icon
             // 
             this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
-            this.icon.Location = new System.Drawing.Point(192, 24);
+            this.icon.Location = new System.Drawing.Point(192, 17);
             this.icon.Name = "icon";
             this.icon.Size = new System.Drawing.Size(100, 100);
             this.icon.TabIndex = 11;
@@ -62,7 +62,7 @@
             this.box_Password.LineIdleColor = System.Drawing.Color.Gray;
             this.box_Password.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_Password.LineThickness = 1;
-            this.box_Password.Location = new System.Drawing.Point(91, 191);
+            this.box_Password.Location = new System.Drawing.Point(91, 184);
             this.box_Password.Margin = new System.Windows.Forms.Padding(4);
             this.box_Password.Name = "box_Password";
             this.box_Password.Size = new System.Drawing.Size(302, 33);
@@ -82,7 +82,7 @@
             this.box_Username.LineIdleColor = System.Drawing.Color.Gray;
             this.box_Username.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_Username.LineThickness = 1;
-            this.box_Username.Location = new System.Drawing.Point(91, 150);
+            this.box_Username.Location = new System.Drawing.Point(91, 143);
             this.box_Username.Margin = new System.Windows.Forms.Padding(4);
             this.box_Username.Name = "box_Username";
             this.box_Username.Size = new System.Drawing.Size(302, 33);
@@ -111,7 +111,7 @@
             this.button_Register.IconVisible = false;
             this.button_Register.IconZoom = 90D;
             this.button_Register.IsTab = false;
-            this.button_Register.Location = new System.Drawing.Point(300, 325);
+            this.button_Register.Location = new System.Drawing.Point(300, 318);
             this.button_Register.Name = "button_Register";
             this.button_Register.Normalcolor = System.Drawing.SystemColors.Highlight;
             this.button_Register.OnHovercolor = System.Drawing.SystemColors.HotTrack;
@@ -132,7 +132,7 @@
             // 
             // captcha
             // 
-            this.captcha.Location = new System.Drawing.Point(91, 231);
+            this.captcha.Location = new System.Drawing.Point(91, 224);
             this.captcha.Name = "captcha";
             this.captcha.Size = new System.Drawing.Size(302, 45);
             this.captcha.TabIndex = 12;
@@ -150,7 +150,7 @@
             this.box_captcha.LineIdleColor = System.Drawing.Color.Gray;
             this.box_captcha.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
             this.box_captcha.LineThickness = 1;
-            this.box_captcha.Location = new System.Drawing.Point(91, 283);
+            this.box_captcha.Location = new System.Drawing.Point(91, 276);
             this.box_captcha.Margin = new System.Windows.Forms.Padding(4);
             this.box_captcha.Name = "box_captcha";
             this.box_captcha.Size = new System.Drawing.Size(302, 33);

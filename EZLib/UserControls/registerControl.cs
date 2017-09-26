@@ -23,9 +23,9 @@ namespace EZLib.UserControls
 
         private void button_Register_Click(object sender, EventArgs e)
         {
-            if (box_Username.Text == "" || box_Password.Text == "")
+            if (box_Username.Text == "" || box_Password.Text == "" || box_captcha.Text == "")
             {
-                apiAccess.messageHandler("Username and Password fields required", "warning");
+                apiAccess.messageHandler("All fields are required", "warning");
             }
             else
             {
