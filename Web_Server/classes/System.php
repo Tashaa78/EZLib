@@ -57,7 +57,7 @@ namespace EZLib
         public function programIdExist($service, $program_id)
         {
             if ($service == "website") {
-                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=? LIMIT 1");
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
                 $query->bindParam(1, $program_id);
                 $query->execute();
 
@@ -67,7 +67,7 @@ namespace EZLib
                     return false;
                 }
             } elseif ($service == "ezlib") {
-                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_token`=? LIMIT 1");
+                $query = $this->database()->prepare("SELECT * FROM `program_ids` WHERE `program_id`=? LIMIT 1");
                 $query->bindParam(1, $program_id);
                 $query->execute();
                 $array = $query->fetch(\PDO::FETCH_ASSOC);
@@ -87,7 +87,7 @@ namespace EZLib
         public function isLicensed($program_id, $username) // Checks if user has a license with the provided program ID.
         {
             if ($this->programIdExist("website", "{$program_id}")) {
-                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_token`=? AND `license_holder`=?");
+                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `license_holder`=?");
                 $query->bindParam(1, $program_id);
                 $query->bindParam(2, $username);
                 $query->execute();
