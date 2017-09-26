@@ -12,6 +12,7 @@ namespace EZLib
         internal static string currentProgramName;
 
         internal static string baseUrl = "http://localhost/Web_Server/api/endpoint.php?"; // API Base
+        private static string authCode = "mtgEcuTSDUOW3vDDEbY6"; // Keep this a secret
 
         internal static Form mainForm = new mainControl();
         internal static Form loaderForm = new formControl();
@@ -26,7 +27,7 @@ namespace EZLib
                 string inputHardwareId = Hardware_ID.Generate();
 
                 string webResponse;
-                string postData = "action=register&username=" + inputUsername + "&password=" + inputPassword + "&ip_address=" + inputIPAddress + "&hardware_id=" + inputHardwareId;
+                string postData = "action=register&authCode=" + authCode + "&username=" + inputUsername + "&password=" + inputPassword + "&ip_address=" + inputIPAddress + "&hardware_id=" + inputHardwareId;
 
                 using (WebClient webClient = new WebClient())
                 {
@@ -66,7 +67,7 @@ namespace EZLib
                 string inputHardwareId = Hardware_ID.Generate();
 
                 string webResponse;
-                string postData = "action=authenticate&username=" + inputUsername + "&password=" + inputPassword + "&hardware_id=" + inputHardwareId;
+                string postData = "action=authenticate&authCode=" + authCode + "&username=" + inputUsername + "&password=" + inputPassword + "&hardware_id=" + inputHardwareId;
 
                 using (WebClient webClient = new WebClient())
                 {
@@ -123,7 +124,7 @@ namespace EZLib
                 string inputId = programId;
 
                 string webResponse;
-                string postData = "action=authenticateProgram&programId=" + inputId;
+                string postData = "action=authenticateProgram&authCode=" + authCode + "&programId=" + inputId;
 
                 using (WebClient webClient = new WebClient())
                 {
@@ -179,7 +180,7 @@ namespace EZLib
             try
             {
                 string webResponse;
-                string postData = "action=randomCaptcha";
+                string postData = "action=randomCaptcha&authCode=" + authCode;
 
                 using (WebClient webClient = new WebClient())
                 {
