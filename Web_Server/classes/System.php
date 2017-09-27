@@ -5,7 +5,7 @@ namespace EZLib
     class System
     {
         private $errorReporting = false;
-        public $authCode = "mtgEcuTSDUOW3vDDEbY6"; // Keep this a secret
+        public $authCode = "lol"; // Keep this a secret
 
         // Database
         public function database() // Connects to the database
@@ -280,7 +280,7 @@ namespace EZLib
                 ));
             }
         }
-        public function licenseExpiration($program_id, $username)
+        public function licenseInformation($program_id, $username, $information)
         {
             if ($this->programIdExist("website", "{$program_id}")) {
                 $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `license_holder`=?");
@@ -290,11 +290,20 @@ namespace EZLib
                 $array = $query->fetch(\PDO::FETCH_ASSOC);
 
                 if ($array > 0) {
-                    return json_encode(array(
-                        "status" => "success",
-                        "username" => "{$username}",
-                        "expiration_date" => "{$array['license_expiry']}",
-                    ));
+                    if ($information == "licenseKey") {
+                        return json_encode(array(
+                            "status" => "success",
+                            "username" => "{$username}",
+                            "license_key" => "{$array['program_license']}",
+                        ));
+                    } elseif ($information == "licenseExpiration") {
+                        return json_encode(array(
+                            "status" => "error",
+                            "username" => "{$username}",
+                            "license_expiration" => "{$array['license_expiry']}",
+                        ));
+                    }
+
                 } else {
                     return json_encode(array(
                         "status" => "error",

@@ -8,7 +8,7 @@ $System->varChecks();
 if (isset($_GET['action']) || isset($_GET['authCode'])) {
     $action = $_GET['action'];
     $authCode = $_GET['authCode'];
-    if ($authCode == $System->authCode) { // Make sure to change this in the library too
+    if ($authCode == $System->authCode) {
         if ($action == "authenticate") {
             if (isset($_GET['username']) || isset($_GET['password']) || isset($_GET['hardware_id'])) {
                 $username = $_GET['username'];
@@ -84,24 +84,38 @@ if (isset($_GET['action']) || isset($_GET['authCode'])) {
 
             header("content-type: application/json");
             echo $System->licenseUser("{$username}", "{$programId}", "{$license_key}");
-        } elseif ($action == "licenseExpiration") {
-            $programId = $_GET['programId'];
-            $username  = $_GET['username'];
+        } elseif ($action == "licenseInformation") {
+            if (isset($_GET['programId']) || isset($_GET['username']) || isset($_GET['information'])) {
+                $programId = $_GET['programId'];
+                $username  = $_GET['username'];
+                $information = $_GET['information'];
 
-            $licenseUser = json_decode($System->licenseExpiration("{$programId}", "{$username}"), true);
-            echo $licenseUser['expiration_date'];
+                if ($information == "licenseKey") {
+                    $licenseInformation = json_decode($System->licenseInformation("{$programId}", "{$username}", "licenseKey"), true);
+                    echo $licenseInformation['license_key'];
+                } elseif ($information == "licenseExpiration") {
+                    $licenseInformation = json_decode($System->licenseInformation("{$programId}", "{$username}", "licenseExpiration"), true);
+                    echo $licenseInformation['license_expiration'];
+                }
+            } else {
+                header("content-type: application/json");
+                echo json_encode(array(
+                    "status" => "error",
+                    "reason" => "Parameter missing",
+                ));
+            }
         }
     } else {
         header("content-type: application/json");
         echo json_encode(array(
             "status" => "error",
-            "reason" => "Parameter missing",
+            "reason" => "Authentication code is incorrect",
         ));
     }
 } else {
     header("content-type: application/json");
     echo json_encode(array(
         "status" => "error",
-        "reason" => "Authentication code is incorrect",
+        "reason" => "Parameter missing",
     ));
 }
