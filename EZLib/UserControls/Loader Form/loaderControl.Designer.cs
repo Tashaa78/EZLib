@@ -47,7 +47,7 @@
             // 
             this.label_EZLib.AutoSize = true;
             this.label_EZLib.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_EZLib.Location = new System.Drawing.Point(192, 11);
+            this.label_EZLib.Location = new System.Drawing.Point(226, 17);
             this.label_EZLib.Name = "label_EZLib";
             this.label_EZLib.Size = new System.Drawing.Size(58, 25);
             this.label_EZLib.TabIndex = 0;
@@ -65,7 +65,7 @@
             this.preloader.LabelVisible = false;
             this.preloader.LineProgressThickness = 8;
             this.preloader.LineThickness = 0;
-            this.preloader.Location = new System.Drawing.Point(135, 71);
+            this.preloader.Location = new System.Drawing.Point(169, 112);
             this.preloader.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.preloader.MaxValue = 100;
             this.preloader.Name = "preloader";
@@ -79,7 +79,7 @@
             // 
             this.label_Message.AutoSize = true;
             this.label_Message.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Message.Location = new System.Drawing.Point(146, 36);
+            this.label_Message.Location = new System.Drawing.Point(180, 47);
             this.label_Message.Name = "label_Message";
             this.label_Message.Size = new System.Drawing.Size(150, 17);
             this.label_Message.TabIndex = 2;
@@ -101,11 +101,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.label_Message);
             this.Controls.Add(this.preloader);
             this.Controls.Add(this.label_EZLib);
             this.Name = "loaderControl";
-            this.Size = new System.Drawing.Size(442, 270);
+            this.Size = new System.Drawing.Size(510, 337);
             this.Load += new System.EventHandler(this.loaderControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -54,9 +54,9 @@ if (isset($_GET['action']) || isset($_GET['authCode'])) {
                 ));
             }
         } elseif ($action == "isLicensed") {
-            if (isset($_GET['programId']) || isset($_GET['username'])) {
-                $programId = $_GET['programId'];
+            if (isset($_GET['username']) || isset($_GET['programId'])) {
                 $username = $_GET['username'];
+                $programId = $_GET['programId'];
 
                 header("content-type: application/json");
                 echo $System->isLicensed("{$programId}", "{$username}");

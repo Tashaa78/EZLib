@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace EZLib
@@ -15,7 +16,8 @@ namespace EZLib
         private static string authCode = "mtgEcuTSDUOW3vDDEbY6"; // Keep this a secret
 
         internal static Form mainForm = new mainControl();
-        internal static Form loaderForm = new formControl();
+        internal static Form loaderForm = new UserControls.Loader_Form.formLoader();
+        internal static Form licenseForm = new UserControls.License_Form.formLicense();
 
         public static void registerApi(string username, string password)
         {
@@ -55,7 +57,7 @@ namespace EZLib
             }
             catch (Exception ex)
             {
-                exceptionHandler(ex);
+                ezlibExceptionHandler(ex);
             }
         }
         public static void loginApi(string username, string password)
@@ -80,17 +82,35 @@ namespace EZLib
                         currentUsername = inputUsername;
                         mainForm.Visible = false;
 
-                        loaderForm.StartPosition = FormStartPosition.Manual;
-                        loaderForm.ShowIcon = false;
-                        loaderForm.ShowInTaskbar = false;
-                        loaderForm.StartPosition = FormStartPosition.CenterScreen;
+                        string postData2 = "action=isLicensed&authCode=" + authCode + "&username=" + inputUsername + "&programId=" + currentProgramId;
+                        string webResponse2;
 
-                        UserControls.loaderControl l_alertMessage = new UserControls.loaderControl();
-                        l_alertMessage.Dock = DockStyle.Fill;
+                        using (WebClient webClient2 = new WebClient())
+                        {
+                            webClient2.Proxy = null;
+                            webClient2.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                            webResponse2 = webClient2.DownloadString(baseUrl + postData2);
 
-                        loaderForm.Controls.Add(l_alertMessage);
+                            if (webResponse2.Contains("success"))
+                            {
+                                UserControls.loaderControl loaderControl = new UserControls.loaderControl();
 
-                        loaderForm.ShowDialog();
+                                loaderForm.Controls.Add(loaderControl);
+
+                                loaderForm.StartPosition = FormStartPosition.CenterScreen;
+                                loaderForm.ShowIcon = false;
+                                loaderForm.ShowInTaskbar = false;
+
+                                loaderForm.ShowDialog();
+                            } else if (webResponse2.Contains("error"))
+                            {
+                                licenseForm.StartPosition = FormStartPosition.CenterScreen;
+                                licenseForm.ShowIcon = false;
+                                licenseForm.ShowInTaskbar = false;
+
+                                licenseForm.ShowDialog();
+                            }
+                        }
                     }
                     else if (webResponse.Contains("error"))
                     {
@@ -114,7 +134,7 @@ namespace EZLib
             }
             catch (Exception ex)
             {
-                exceptionHandler(ex);
+                ezlibExceptionHandler(ex);
             }
         }
         public static void authProgramApi(string programId)
@@ -152,10 +172,10 @@ namespace EZLib
             }
             catch (Exception ex)
             {
-                exceptionHandler(ex);
+                ezlibExceptionHandler(ex);
             }
         }
-        public static void logExceptionApi(string programId, Exception ex)
+        public static void ezlibException(string programId, Exception ex)
         {
             try
             {
@@ -164,7 +184,7 @@ namespace EZLib
                 string inputMessage = ex.Message;
 
                 string webResponse;
-                string postData = "action=logException&authCode=" + authCode + "&programId=" + inputId + "&exceptionName=" + inputName + "&exceptionMessage=" + inputMessage;
+                string postData = "action=logException&authCode=" + authCode + "&programId=ezlib&exceptionName=" + inputName + "&exceptionMessage=" + inputMessage;
 
                 using (WebClient webClient = new WebClient())
                 {
@@ -175,7 +195,7 @@ namespace EZLib
             }
             catch (Exception exception)
             {
-                exceptionHandler(exception);
+                ezlibExceptionHandler(exception);
             }
         }
 
@@ -196,7 +216,7 @@ namespace EZLib
             }
             catch (Exception ex)
             {
-                exceptionHandler(ex);
+                ezlibExceptionHandler(ex);
                 return "An error has occurred";
             }
         }
@@ -218,15 +238,15 @@ namespace EZLib
                 }
             } catch (Exception ex)
             {
-                exceptionHandler(ex);
+                ezlibExceptionHandler(ex);
                 return "An error has occurred";
             }
         }
         
 
-        public static void exceptionHandler(Exception ex)
+        public static void ezlibExceptionHandler(Exception ex)
         {
-            logExceptionApi(currentProgramId, ex);
+            ezlibException(currentProgramId, ex);
 
             Form formControl = new UserControls.Error_Messages.formMessage(ex.GetType().Name, ex.Message);
 
@@ -254,5 +274,7 @@ namespace EZLib
 
             formControl.ShowDialog();
         }
+
+
     }
 }

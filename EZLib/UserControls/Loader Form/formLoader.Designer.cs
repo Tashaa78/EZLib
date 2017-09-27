@@ -1,6 +1,6 @@
-﻿namespace EZLib
+﻿namespace EZLib.UserControls.Loader_Form
 {
-    partial class formControl
+    partial class formLoader
     {
         /// <summary>
         /// Required designer variable.
@@ -37,14 +37,20 @@
             this.elipse.ElipseRadius = 5;
             this.elipse.TargetControl = this;
             // 
-            // formControl
+            // formLoader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 270);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(510, 337);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "formControl";
-            this.Text = "formControl";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "formLoader";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "loaderForm";
             this.ResumeLayout(false);
 
         }

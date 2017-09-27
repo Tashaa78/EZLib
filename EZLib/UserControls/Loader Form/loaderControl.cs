@@ -23,6 +23,7 @@ namespace EZLib.UserControls
             } else
             {
                 apiAccess.loaderForm.Close();
+                apiAccess.licenseForm.Close();
             }
         }
     }

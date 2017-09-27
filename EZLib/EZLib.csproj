@@ -49,12 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.cs" />
-    <Compile Include="formControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formControl.Designer.cs">
-      <DependentUpon>formControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hardware_ID.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -75,17 +69,35 @@
     <Compile Include="UserControls\Alert Messages\alertMessage.Designer.cs">
       <DependentUpon>alertMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Error Messages\formMessage.cs">
+    <Compile Include="UserControls\formEZException.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControls\Error Messages\formMessage.Designer.cs">
-      <DependentUpon>formMessage.cs</DependentUpon>
+    <Compile Include="UserControls\formEZException.Designer.cs">
+      <DependentUpon>formEZException.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\loaderControl.cs">
+    <Compile Include="UserControls\License Form\formLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\License Form\formLicense.Designer.cs">
+      <DependentUpon>formLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\License Form\licenseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\loaderControl.Designer.cs">
+    <Compile Include="UserControls\License Form\licenseControl.Designer.cs">
+      <DependentUpon>licenseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Loader Form\loaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Loader Form\loaderControl.Designer.cs">
       <DependentUpon>loaderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Loader Form\formLoader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Loader Form\formLoader.Designer.cs">
+      <DependentUpon>formLoader.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\loginControl.cs">
       <SubType>UserControl</SubType>
@@ -108,9 +120,6 @@
     <Compile Include="UserInformation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="formControl.resx">
-      <DependentUpon>formControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -121,10 +130,19 @@
     <EmbeddedResource Include="UserControls\Alert Messages\alertMessage.resx">
       <DependentUpon>alertMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\Error Messages\formMessage.resx">
-      <DependentUpon>formMessage.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\formEZException.resx">
+      <DependentUpon>formEZException.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\loaderControl.resx">
+    <EmbeddedResource Include="UserControls\License Form\formLicense.resx">
+      <DependentUpon>formLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\License Form\licenseControl.resx">
+      <DependentUpon>licenseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Loader Form\formLoader.resx">
+      <DependentUpon>formLoader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Loader Form\loaderControl.resx">
       <DependentUpon>loaderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loginControl.resx">
