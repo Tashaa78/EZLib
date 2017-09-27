@@ -3,11 +3,16 @@ using System.Windows.Forms;
 
 namespace EZLib.UserControls.License_Form
 {
-    public partial class formLicense : Form
+    internal partial class formLicense : Form
     {
         public formLicense()
         {
             InitializeComponent();
+        }
+
+        private void button_exit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void formLicense_Load(object sender, EventArgs e)
@@ -19,11 +24,6 @@ namespace EZLib.UserControls.License_Form
             form.Controls.Add(licenseControl);
 
             form.Refresh();
-        }
-
-        private void button_exit_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
         }
     }
 }

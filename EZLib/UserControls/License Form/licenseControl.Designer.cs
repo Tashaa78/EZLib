@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(licenseControl));
             this.elipse = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.box_Password = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.box_Username = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.button_License = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.box_License = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.box_Username = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.icon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
             this.SuspendLayout();
@@ -42,44 +42,6 @@
             // 
             this.elipse.ElipseRadius = 5;
             this.elipse.TargetControl = this.button_License;
-            // 
-            // box_Password
-            // 
-            this.box_Password.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.box_Password.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_Password.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.box_Password.HintForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.box_Password.HintText = "License Key";
-            this.box_Password.isPassword = false;
-            this.box_Password.LineFocusedColor = System.Drawing.SystemColors.HotTrack;
-            this.box_Password.LineIdleColor = System.Drawing.Color.Gray;
-            this.box_Password.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
-            this.box_Password.LineThickness = 1;
-            this.box_Password.Location = new System.Drawing.Point(91, 231);
-            this.box_Password.Margin = new System.Windows.Forms.Padding(4);
-            this.box_Password.Name = "box_Password";
-            this.box_Password.Size = new System.Drawing.Size(302, 33);
-            this.box_Password.TabIndex = 10;
-            this.box_Password.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // box_Username
-            // 
-            this.box_Username.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.box_Username.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.box_Username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.box_Username.HintForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.box_Username.HintText = "Username";
-            this.box_Username.isPassword = false;
-            this.box_Username.LineFocusedColor = System.Drawing.SystemColors.HotTrack;
-            this.box_Username.LineIdleColor = System.Drawing.Color.Gray;
-            this.box_Username.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
-            this.box_Username.LineThickness = 1;
-            this.box_Username.Location = new System.Drawing.Point(91, 190);
-            this.box_Username.Margin = new System.Windows.Forms.Padding(4);
-            this.box_Username.Name = "box_Username";
-            this.box_Username.Size = new System.Drawing.Size(302, 33);
-            this.box_Username.TabIndex = 9;
-            this.box_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // button_License
             // 
@@ -117,6 +79,44 @@
             this.button_License.TextFont = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_License.Click += new System.EventHandler(this.button_License_Click);
             // 
+            // box_License
+            // 
+            this.box_License.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.box_License.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.box_License.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.box_License.HintForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.box_License.HintText = "License Key";
+            this.box_License.isPassword = false;
+            this.box_License.LineFocusedColor = System.Drawing.SystemColors.HotTrack;
+            this.box_License.LineIdleColor = System.Drawing.Color.Gray;
+            this.box_License.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
+            this.box_License.LineThickness = 1;
+            this.box_License.Location = new System.Drawing.Point(91, 231);
+            this.box_License.Margin = new System.Windows.Forms.Padding(4);
+            this.box_License.Name = "box_License";
+            this.box_License.Size = new System.Drawing.Size(302, 33);
+            this.box_License.TabIndex = 10;
+            this.box_License.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // box_Username
+            // 
+            this.box_Username.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.box_Username.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.box_Username.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.box_Username.HintForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.box_Username.HintText = "Username";
+            this.box_Username.isPassword = false;
+            this.box_Username.LineFocusedColor = System.Drawing.SystemColors.HotTrack;
+            this.box_Username.LineIdleColor = System.Drawing.Color.Gray;
+            this.box_Username.LineMouseHoverColor = System.Drawing.SystemColors.Highlight;
+            this.box_Username.LineThickness = 1;
+            this.box_Username.Location = new System.Drawing.Point(91, 190);
+            this.box_Username.Margin = new System.Windows.Forms.Padding(4);
+            this.box_Username.Name = "box_Username";
+            this.box_Username.Size = new System.Drawing.Size(302, 33);
+            this.box_Username.TabIndex = 9;
+            this.box_Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
             // icon
             // 
             this.icon.Image = ((System.Drawing.Image)(resources.GetObject("icon.Image")));
@@ -131,7 +131,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.box_Password);
+            this.Controls.Add(this.box_License);
             this.Controls.Add(this.box_Username);
             this.Controls.Add(this.button_License);
             this.Controls.Add(this.icon);
@@ -145,7 +145,7 @@
         #endregion
 
         private Bunifu.Framework.UI.BunifuElipse elipse;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox box_Password;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox box_License;
         private Bunifu.Framework.UI.BunifuMaterialTextbox box_Username;
         private Bunifu.Framework.UI.BunifuFlatButton button_License;
         private System.Windows.Forms.PictureBox icon;

@@ -56,7 +56,6 @@ namespace EZLib
             }
         }
 
-
         // User
         public function validateLogin($service, $username, $password, $hardware_id) // Checks if user has authenticated correctly
         {
@@ -232,6 +231,76 @@ namespace EZLib
                     "status" => "success",
                     "program_id" => "{$program_id}",
                 ));
+            } else {
+                return json_encode(array(
+                    "status" => "error",
+                    "reason" => "Program ID does not exist",
+                ));
+            }
+        }
+
+        // License
+        public function licenseUser($username, $program_id, $license_key)
+        {
+            if ($this->programIdExist("website", "{$program_id}")) {
+                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `program_license`=?");
+                $query->bindParam(1, $program_id);
+                $query->bindParam(2, $license_key);
+                $query->execute();
+                $array = $query->fetch(\PDO::FETCH_ASSOC);
+
+                if ($array > 0) {
+                    if ($array['license_holder'] == "") {
+                        $query = $this->database()->prepare("UPDATE `program_licenses` SET `license_holder`=? WHERE `program_license`=?");
+                        $query->bindParam(1, $username);
+                        $query->bindParam(2, $license_key);
+                        $query->execute();
+
+                        return json_encode(array(
+                            "status" => "success",
+                            "username" => "{$username}",
+                            "license_key" => "{$license_key}",
+                        ));
+                    } else {
+                        return json_encode(array(
+                            "status" => "error",
+                            "reason" => "License Key is already in use",
+                        ));
+                    }
+                } else {
+                    return json_encode(array(
+                        "status" => "error",
+                        "reason" => "Program ID license not found",
+                    ));
+                }
+            } else {
+                return json_encode(array(
+                    "status" => "error",
+                    "reason" => "Program ID does not exist",
+                ));
+            }
+        }
+        public function licenseExpiration($program_id, $license_key)
+        {
+            if ($this->programIdExist("website", "{$program_id}")) {
+                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `program_license`=?");
+                $query->bindParam(1, $program_id);
+                $query->bindParam(2, $license_key);
+                $query->execute();
+                $array = $query->fetch(\PDO::FETCH_ASSOC);
+
+                if ($array > 0) {
+                    return json_encode(array(
+                        "status" => "success",
+                        "license_key" => "{$license_key}",
+                        "expiration_date" => "{$array['license_expiry']}",
+                    ));
+                } else {
+                    return json_encode(array(
+                        "status" => "error",
+                        "reason" => "Program ID license not found",
+                    ));
+                }
             } else {
                 return json_encode(array(
                     "status" => "error",

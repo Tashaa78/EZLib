@@ -77,6 +77,19 @@ if (isset($_GET['action']) || isset($_GET['authCode'])) {
 
             header("content-type: application/json");
             echo $System->logException("{$programId}", "{$exceptionName}", "{$exceptionMessage}");
+        } elseif ($action == "licenseUser") {
+            $username = $_GET['username'];
+            $programId = $_GET['programId'];
+            $license_key = $_GET['licenseKey'];
+
+            $licenseUser = json_decode($System->licenseUser("{$username}", "{$programId}", "{$license_key}"), true);
+            echo $licenseUser['license_key'];
+        } elseif ($action == "licenseExpiration") {
+            $programId = $_GET['programId'];
+            $license_key  = $_GET['licenseKey'];
+
+            $licenseUser = json_decode($System->licenseExpiration("{$programId}", "{$license_key}"), true);
+            echo $licenseUser['expiration_date'];
         }
     } else {
         header("content-type: application/json");

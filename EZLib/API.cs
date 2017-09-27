@@ -9,8 +9,12 @@ namespace EZLib
     {
         internal static string currentCaptcha;
         internal static string currentUsername;
+
         internal static string currentProgramId;
         internal static string currentProgramName;
+
+        internal static string currentLicenseKey;
+        internal static string currentLicenseExpiration;
 
         internal static string baseUrl = "http://localhost/Web_Server/api/endpoint.php?"; // API Base
         private static string authCode = "mtgEcuTSDUOW3vDDEbY6"; // Keep this a secret
@@ -198,6 +202,81 @@ namespace EZLib
                 ezlibExceptionHandler(exception);
             }
         }
+        public static void licenseUserApi(string programId, string username, string licenseKey)
+        {
+            try
+            {
+                string inputId = programId;
+                string inputUsername = username;
+                string inputLicense = licenseKey;
+
+                string webResponse;
+                string postData = "action=licenseUser&authCode=" + authCode + "&username=" + inputUsername + "&programId=" + inputId + "&licenseKey=" + inputLicense;
+
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Proxy = null;
+                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                    webResponse = webClient.DownloadString(baseUrl + postData);
+
+                    if (webResponse.Contains("error"))
+                    {
+                        currentLicenseKey = "N/A";
+                    } else
+                    {
+                        licenseForm.Close();
+                        currentLicenseKey = webResponse;
+                      
+                        messageHandler("You have successfully registered your product", "success");
+
+                        UserControls.loaderControl loaderControl = new UserControls.loaderControl();
+
+                        loaderForm.Controls.Add(loaderControl);
+
+                        loaderForm.StartPosition = FormStartPosition.CenterScreen;
+                        loaderForm.ShowIcon = false;
+                        loaderForm.ShowInTaskbar = false;
+
+                        loaderForm.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ezlibExceptionHandler(ex);
+            }
+        }
+        public static void licenseExpiration(string programId, string licenseKey)
+        {
+            try
+            {
+                string inputId = programId;
+                string inputLicense = licenseKey;
+
+                string webResponse;
+                string postData = "action=licenseExpiration&authCode=" + authCode + "&programId=" + inputId + "&licenseKey=" + inputLicense;
+
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Proxy = null;
+                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                    webResponse = webClient.DownloadString(baseUrl + postData);
+
+                    if (webResponse.Contains("error"))
+                    {
+                        currentLicenseExpiration = "N/A";
+                    }
+                    else
+                    {
+                        currentLicenseExpiration = webResponse;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ezlibExceptionHandler(ex);
+            }
+        }
 
 
         public static string ipAddressApi()
@@ -244,7 +323,7 @@ namespace EZLib
         }
         
 
-        public static void ezlibExceptionHandler(Exception ex)
+        internal static void ezlibExceptionHandler(Exception ex)
         {
             ezlibException(currentProgramId, ex);
 
@@ -255,7 +334,7 @@ namespace EZLib
             formControl.ShowInTaskbar = false;
 
             formControl.ShowDialog();
-        }
+        } // Only for EZLib exceptions
         internal static void messageHandler(string message, string type)
         {
             Form formControl = new UserControls.Alert_Messages.formMessage();
@@ -274,7 +353,5 @@ namespace EZLib
 
             formControl.ShowDialog();
         }
-
-
     }
 }

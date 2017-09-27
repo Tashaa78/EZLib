@@ -18,13 +18,11 @@ namespace EZLib
         }
         public static string userLicense()
         {
-            // Adding in a bit
-            return null;
+            return apiAccess.currentLicenseKey;
         }
         public static string licenseExpiryDate()
         {
-            // Adding in a bit
-            return null;
+            return apiAccess.currentLicenseExpiration;
         }
     }
 }
