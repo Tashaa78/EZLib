@@ -18,11 +18,11 @@ namespace EZLib
         }
         public static string userLicense()
         {
-            return apiAccess.currentLicenseKey;
+            return apiAccess.licenseInformation(apiAccess.currentProgramId, apiAccess.currentUsername, "licenseKey");
         }
         public static string licenseExpiryDate()
         {
-            return apiAccess.currentLicenseExpiration;
+            return apiAccess.licenseInformation(apiAccess.currentProgramId, apiAccess.currentUsername, "licenseExpiration");
         }
     }
 }

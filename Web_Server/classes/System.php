@@ -5,7 +5,7 @@ namespace EZLib
     class System
     {
         private $errorReporting = false;
-        public $authCode = "lol"; // Keep this a secret
+        public $authCode = "mtgEcuTSDUOW3vDDEbY6"; // Keep this a secret
 
         // Database
         public function database() // Connects to the database

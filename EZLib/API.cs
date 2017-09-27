@@ -9,12 +9,8 @@ namespace EZLib
     {
         internal static string currentCaptcha;
         internal static string currentUsername;
-
         internal static string currentProgramId;
         internal static string currentProgramName;
-
-        internal static string currentLicenseKey;
-        internal static string currentLicenseExpiration;
 
         internal static string baseUrl = "http://localhost/Web_Server/api/endpoint.php?"; // API Base
         private static string authCode = "mtgEcuTSDUOW3vDDEbY6"; // Keep this a secret
@@ -221,10 +217,20 @@ namespace EZLib
 
                     if (webResponse.Contains("success"))
                     {
-                        // Show form
+                        licenseForm.Close();
+
+                        loaderForm.StartPosition = FormStartPosition.CenterParent;
+                        loaderForm.ShowIcon = false;
+                        loaderForm.ShowInTaskbar = false;
+
+                        UserControls.loaderControl loaderControl = new UserControls.loaderControl();
+
+                        loaderForm.Controls.Add(loaderControl);
+
+                        loaderForm.ShowDialog();
                     } else
                     {
-                        // Show error
+                        messageHandler("This license key does not exist or already in use", "error");
                     }
                 }
             }
@@ -233,38 +239,6 @@ namespace EZLib
                 ezlibExceptionHandler(ex);
             }
         }
-        public static void licenseExpiration(string programId, string username)
-        {
-            try
-            {
-                string inputId = programId;
-                string inputUsername = username;
-
-                string webResponse;
-                string postData = "action=licenseExpiration&authCode=" + authCode + "&programId=" + inputId + "&username=" + inputUsername;
-
-                using (WebClient webClient = new WebClient())
-                {
-                    webClient.Proxy = null;
-                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
-                    webResponse = webClient.DownloadString(baseUrl + postData);
-
-                    if (webResponse.Contains("success"))
-                    {
-                        
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ezlibExceptionHandler(ex);
-            }
-        }
-
 
         public static string ipAddressApi()
         {
@@ -308,7 +282,32 @@ namespace EZLib
                 return "An error has occurred";
             }
         }
-        
+        public static string licenseInformation(string programId, string username, string information)
+        {
+            try
+            {
+                string inputId = programId;
+                string inputUsername = username;
+                string inputInformation = information;
+
+                string webResponse;
+                string postData = "action=licenseInformation&authCode=" + authCode + "&programId=" + inputId + "&username=" + inputUsername + "&information=" + inputInformation;
+
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Proxy = null;
+                    webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
+                    webResponse = webClient.DownloadString(baseUrl + postData);
+
+                    return webResponse;
+                }
+            }
+            catch (Exception ex)
+            {
+                ezlibExceptionHandler(ex);
+                return "An error has occurred";
+            }
+        }
 
         internal static void ezlibExceptionHandler(Exception ex)
         {

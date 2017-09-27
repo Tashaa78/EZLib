@@ -46,6 +46,7 @@ if (isset($_GET['action']) || isset($_GET['authCode'])) {
 
                 header("content-type: application/json");
                 echo $System->programIdExist("ezlib", "{$programId}");
+
             } else {
                 header("content-type: application/json");
                 echo json_encode(array(

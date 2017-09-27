@@ -12,7 +12,9 @@ namespace EZLibTests
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            label1.Text = EZLib.UserInformation.licenseExpiryDate();
+            label1.Text = "Your Username: " + EZLib.UserInformation.userUsername();
+            label2.Text = "License Key: " + EZLib.UserInformation.userLicense();
+            label4.Text = "License Expiration Date: " + EZLib.UserInformation.licenseExpiryDate();
         }
     }
 }
