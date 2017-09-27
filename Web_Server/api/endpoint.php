@@ -82,13 +82,13 @@ if (isset($_GET['action']) || isset($_GET['authCode'])) {
             $programId = $_GET['programId'];
             $license_key = $_GET['licenseKey'];
 
-            $licenseUser = json_decode($System->licenseUser("{$username}", "{$programId}", "{$license_key}"), true);
-            echo $licenseUser['license_key'];
+            header("content-type: application/json");
+            echo $System->licenseUser("{$username}", "{$programId}", "{$license_key}");
         } elseif ($action == "licenseExpiration") {
             $programId = $_GET['programId'];
-            $license_key  = $_GET['licenseKey'];
+            $username  = $_GET['username'];
 
-            $licenseUser = json_decode($System->licenseExpiration("{$programId}", "{$license_key}"), true);
+            $licenseUser = json_decode($System->licenseExpiration("{$programId}", "{$username}"), true);
             echo $licenseUser['expiration_date'];
         }
     } else {

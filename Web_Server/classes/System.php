@@ -280,19 +280,19 @@ namespace EZLib
                 ));
             }
         }
-        public function licenseExpiration($program_id, $license_key)
+        public function licenseExpiration($program_id, $username)
         {
             if ($this->programIdExist("website", "{$program_id}")) {
-                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `program_license`=?");
+                $query = $this->database()->prepare("SELECT * FROM `program_licenses` WHERE `program_id`=? AND `license_holder`=?");
                 $query->bindParam(1, $program_id);
-                $query->bindParam(2, $license_key);
+                $query->bindParam(2, $username);
                 $query->execute();
                 $array = $query->fetch(\PDO::FETCH_ASSOC);
 
                 if ($array > 0) {
                     return json_encode(array(
                         "status" => "success",
-                        "license_key" => "{$license_key}",
+                        "username" => "{$username}",
                         "expiration_date" => "{$array['license_expiry']}",
                     ));
                 } else {

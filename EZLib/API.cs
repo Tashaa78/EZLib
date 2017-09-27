@@ -219,25 +219,12 @@ namespace EZLib
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
                     webResponse = webClient.DownloadString(baseUrl + postData);
 
-                    if (webResponse.Contains("error"))
+                    if (webResponse.Contains("success"))
                     {
-                        currentLicenseKey = "N/A";
+                        // Show form
                     } else
                     {
-                        licenseForm.Close();
-                        currentLicenseKey = webResponse;
-                      
-                        messageHandler("You have successfully registered your product", "success");
-
-                        UserControls.loaderControl loaderControl = new UserControls.loaderControl();
-
-                        loaderForm.Controls.Add(loaderControl);
-
-                        loaderForm.StartPosition = FormStartPosition.CenterScreen;
-                        loaderForm.ShowIcon = false;
-                        loaderForm.ShowInTaskbar = false;
-
-                        loaderForm.ShowDialog();
+                        // Show error
                     }
                 }
             }
@@ -246,15 +233,15 @@ namespace EZLib
                 ezlibExceptionHandler(ex);
             }
         }
-        public static void licenseExpiration(string programId, string licenseKey)
+        public static void licenseExpiration(string programId, string username)
         {
             try
             {
                 string inputId = programId;
-                string inputLicense = licenseKey;
+                string inputUsername = username;
 
                 string webResponse;
-                string postData = "action=licenseExpiration&authCode=" + authCode + "&programId=" + inputId + "&licenseKey=" + inputLicense;
+                string postData = "action=licenseExpiration&authCode=" + authCode + "&programId=" + inputId + "&username=" + inputUsername;
 
                 using (WebClient webClient = new WebClient())
                 {
@@ -262,13 +249,13 @@ namespace EZLib
                     webClient.Headers.Add(HttpRequestHeader.UserAgent, "EZLib 1.0 +https://ezlib.rocks/");
                     webResponse = webClient.DownloadString(baseUrl + postData);
 
-                    if (webResponse.Contains("error"))
+                    if (webResponse.Contains("success"))
                     {
-                        currentLicenseExpiration = "N/A";
+                        
                     }
                     else
                     {
-                        currentLicenseExpiration = webResponse;
+                        
                     }
                 }
             }
