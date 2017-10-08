@@ -4,6 +4,8 @@ namespace EZLib
 {
     public class EZLib
     {
+        private readonly System _system = new System();
+
         internal string MyUsername { get; }
         internal string MyIpAddress { get; }
         internal string MyLicenseKey { get; }
@@ -18,9 +20,8 @@ namespace EZLib
             }
             else
             {
-                var system = new System();
-                system.InitializeProgram(programId);
-                return system.IsInitialized;
+                _system.InitializeProgram(programId);
+                return _system.IsInitialized;
             }
         }
 
