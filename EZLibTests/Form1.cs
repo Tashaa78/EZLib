@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using EZLib;
 
 namespace EZLibTests
 {
@@ -7,14 +9,20 @@ namespace EZLibTests
         public Form1()
         {
             InitializeComponent();
-            EZLib.Startup.authProgram("0DCKDWOTF");
-        }
 
-        private void Form1_Load(object sender, System.EventArgs e)
-        {
-            label1.Text = "Your Username: " + EZLib.UserInformation.userUsername();
-            label2.Text = "License Key: " + EZLib.UserInformation.userLicense();
-            label4.Text = "License Expiration Date: " + EZLib.UserInformation.licenseExpiryDate();
+            var EZLib = new EZLib.EZLib();
+            var ResponseI = new Response().InitializeResponse();
+
+            ResponseI = EZLib.Initialize("d7e28501");
+
+            if (ResponseI)
+            {
+                // Show login form
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }
