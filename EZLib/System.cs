@@ -1,8 +1,5 @@
-﻿using System.IO;
-using System.Net;
-using System.Security.Cryptography;
+﻿using System.Net;
 using System.Text;
-using System.Windows.Forms;
 
 namespace EZLib
 {
@@ -17,18 +14,6 @@ namespace EZLib
         internal bool IsSignedIn;
         internal bool IsVerifiedDll;
         private WebClient WebClient;
-
-        #region Cryptography
-
-        private byte[] ComputeHash(string filePath)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                return sha256.ComputeHash(File.ReadAllBytes(filePath));
-            }
-        }
-
-        #endregion
 
         #region API
 

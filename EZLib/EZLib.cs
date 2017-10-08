@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace EZLib
+﻿namespace EZLib
 {
-    public class EZLib
+    public class EzLib
     {
         private readonly System _system = new System();
 
@@ -13,16 +11,13 @@ namespace EZLib
 
         public bool Initialize(string programId)
         {
-            if (programId == String.Empty)
+            if (programId == string.Empty)
             {
                 // TODO: Show error message
                 return false;
             }
-            else
-            {
-                _system.InitializeProgram(programId);
-                return _system.IsInitialized;
-            }
+            _system.InitializeProgram(programId);
+            return _system.IsInitialized;
         }
 
 
