@@ -18,17 +18,21 @@ namespace EZLib
         {
             using (WebClient)
             {
-                string _webResponse;
                 var postData = "ProgramID=" + programId;
 
                 WebClient.Proxy = null;
                 WebClient.Encoding = Encoding.UTF8;
                 WebClient.Headers.Add(HttpRequestHeader.UserAgent, UserAgent);
                 WebClient.Headers.Add(HttpRequestHeader.ContentType, PostType);
-                _webResponse = WebClient.UploadString(InitializeProgramApi, postData);
+                var webResponse = WebClient.UploadString(InitializeProgramApi, postData);
 
                 // TODO: Decode JSON and handle it
             }
+        }
+
+        public void SignIn(string username, string password)
+        {
+            // TODO: Begin working on this API
         }
 
         #endregion
@@ -38,7 +42,9 @@ namespace EZLib
         public const string ApiEndpoint = "http://localhost/api/";
 
         public const string InitializeProgramApi = "http://localohost/api/InitializeProgram";
-        public const string LoginApi = "http://localhost/api/Login";
+        public const string SignInApi = "http://localhost/api/SignIn";
+        public const string SignUpApi = "http://localhost/api/SignUp";
+        public const string LicenseCheck = "http://localhost/api/LicenseCheck";
 
         #endregion
     }
