@@ -8,15 +8,15 @@ namespace EZLib
 {
     internal class System : Uri
     {
-        private string PostData;
-        private string WebResponse;
-        private WebClient WebClient;
         private const string UserAgent = "EZLib (https://ezlib.rocks/)";
         private const string PostType = "application/www-x-form-urlencoded";
+        private string _postData;
+        private string _webResponse;
+        internal bool IsInitialized;
 
         internal bool IsSignedIn;
-        internal bool IsInitialized;
         internal bool IsVerifiedDll;
+        private WebClient WebClient;
 
         #region Cryptography
 
@@ -36,15 +36,15 @@ namespace EZLib
         {
             using (WebClient)
             {
-                PostData = "ProgramID=" + programId;
+                _postData = "ProgramID=" + programId;
 
                 WebClient.Proxy = null;
                 WebClient.Encoding = Encoding.UTF8;
                 WebClient.Headers.Add(HttpRequestHeader.UserAgent, UserAgent);
                 WebClient.Headers.Add(HttpRequestHeader.ContentType, PostType);
-                WebResponse = WebClient.UploadString(InitializeProgramApi, PostData);
+                _webResponse = WebClient.UploadString(InitializeProgramApi, _postData);
 
-                MessageBox.Show(WebResponse); // temp
+                MessageBox.Show(_webResponse); // temp
             }
         }
 

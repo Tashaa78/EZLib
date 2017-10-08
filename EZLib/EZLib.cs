@@ -2,26 +2,31 @@
 {
     public class EZLib
     {
-        internal string myHardwareId;
-        internal string myIPAddress;
-        internal string myLicenseKey;
-        internal string myUsername;
+        internal string MyUsername;
+        internal string MyIpAddress;
+        internal string MyLicenseKey;
+        internal string MyHardwareId;
         
         #region User Information
 
         public string GetUsername()
         {
-            return myUsername;
+            return MyUsername;
         }
 
-        public string GetIPAddress()
+        public string GetIpAddress()
         {
-            return myIPAddress;
+            return MyIpAddress;
         }
 
         public string GetLicenseKey()
         {
-            return myLicenseKey;
+            return MyLicenseKey;
+        }
+
+        public string GetHardwareId()
+        {
+            return MyHardwareId;
         }
 
         #endregion
