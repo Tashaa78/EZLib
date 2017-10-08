@@ -6,7 +6,7 @@
         {
             var System = new System();
 
-            if (System.isInitialized)
+            if (System.IsInitialized)
                 return true;
             return false;
         }
@@ -15,7 +15,7 @@
         {
             var System = new System();
 
-            if (System.isSignedIn)
+            if (System.IsSignedIn)
                 return true;
             return false;
         }
