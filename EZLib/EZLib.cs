@@ -12,10 +12,7 @@
         public bool Initialize(string programId)
         {
             if (programId == string.Empty)
-            {
-                // TODO: Show error message
                 return false;
-            }
             _system.InitializeProgram(programId);
             return _system.IsInitialized;
         }

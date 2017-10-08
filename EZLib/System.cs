@@ -7,13 +7,10 @@ namespace EZLib
     {
         private const string UserAgent = "EZLib (https://ezlib.rocks/)";
         private const string PostType = "application/www-x-form-urlencoded";
-        private string _postData;
-        private string _webResponse;
-        internal bool IsInitialized;
-
-        internal bool IsSignedIn;
-        internal bool IsVerifiedDll;
         private WebClient WebClient;
+        internal bool IsInitialized { get; set; }
+        internal bool IsSignedIn { get; set; }
+        internal bool IsVerifiedDll { get; set; }
 
         #region API
 
@@ -21,13 +18,14 @@ namespace EZLib
         {
             using (WebClient)
             {
-                _postData = "ProgramID=" + programId;
+                string _webResponse;
+                var postData = "ProgramID=" + programId;
 
                 WebClient.Proxy = null;
                 WebClient.Encoding = Encoding.UTF8;
                 WebClient.Headers.Add(HttpRequestHeader.UserAgent, UserAgent);
                 WebClient.Headers.Add(HttpRequestHeader.ContentType, PostType);
-                _webResponse = WebClient.UploadString(InitializeProgramApi, _postData);
+                _webResponse = WebClient.UploadString(InitializeProgramApi, postData);
 
                 // TODO: Decode JSON and handle it
             }

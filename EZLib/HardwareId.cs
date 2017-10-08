@@ -7,7 +7,7 @@ namespace EZLib
 {
     internal class HardwareId
     {
-        public static string Generate()
+        public string Generate()
         {
             string hardwareId;
             string hddModel;
@@ -37,7 +37,7 @@ namespace EZLib
             }
         }
 
-        private static string GetComponentId(string hwclass, string syntax)
+        private string GetComponentId(string hwclass, string syntax)
         {
             var managementObjectSearcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM " + hwclass);
             foreach (ManagementObject managementObject in managementObjectSearcher.Get())
