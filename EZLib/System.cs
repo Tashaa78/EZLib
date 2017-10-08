@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace EZLib
 {
-    internal class System : Uri
+    internal class System
     {
         private const string UserAgent = "EZLib (https://ezlib.rocks/)";
         private const string PostType = "application/www-x-form-urlencoded";
@@ -44,9 +44,18 @@ namespace EZLib
                 WebClient.Headers.Add(HttpRequestHeader.ContentType, PostType);
                 _webResponse = WebClient.UploadString(InitializeProgramApi, _postData);
 
-                MessageBox.Show(_webResponse); // temp
+                // TODO: Decode JSON and handle it
             }
         }
+
+        #endregion
+
+        #region API Endpoints
+
+        public const string ApiEndpoint = "http://localhost/api/";
+
+        public const string InitializeProgramApi = "http://localohost/api/InitializeProgram";
+        public const string LoginApi = "http://localhost/api/Login";
 
         #endregion
     }

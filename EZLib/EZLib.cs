@@ -1,12 +1,30 @@
-﻿namespace EZLib
+﻿using System;
+
+namespace EZLib
 {
     public class EZLib
     {
-        internal string MyUsername;
-        internal string MyIpAddress;
-        internal string MyLicenseKey;
-        internal string MyHardwareId;
-        
+        internal string MyUsername { get; }
+        internal string MyIpAddress { get; }
+        internal string MyLicenseKey { get; }
+        internal string MyHardwareId { get; }
+
+        public bool Initialize(string programId)
+        {
+            if (programId == String.Empty)
+            {
+                // TODO: Show error message
+                return false;
+            }
+            else
+            {
+                var system = new System();
+                system.InitializeProgram(programId);
+                return system.IsInitialized;
+            }
+        }
+
+
         #region User Information
 
         public string GetUsername()

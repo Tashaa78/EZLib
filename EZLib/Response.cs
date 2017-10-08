@@ -2,27 +2,16 @@
 {
     public class Response
     {
+        private readonly System _system = new System();
+
         public bool InitializeResponse()
         {
-            var System = new System();
-
-            if (System.IsInitialized)
-                return true;
-            return false;
+            return _system.IsInitialized;
         }
 
         public bool LoginResponse()
         {
-            var System = new System();
-
-            if (System.IsSignedIn)
-                return true;
-            return false;
-        }
-
-        public bool RegisterResponse()
-        {
-            return false;
+            return _system.IsSignedIn;
         }
     }
 }
