@@ -17,12 +17,12 @@ namespace EZLib
             string motherboardManufacturer;
             string motherboardNumber;
 
-            hddModel = getComponentId("Win32_DiskDrive", "Model");
-            hddManufacturer = getComponentId("Win32_DiskDrive", "Manufacturer");
-            hddSerialNumber = getComponentId("Win32_DiskDrive", "SerialNumber");
-            motherboardModel = getComponentId("Win32_BaseBoard", "Model");
-            motherboardManufacturer = getComponentId("Win32_BaseBoard", "Manufacturer");
-            motherboardNumber = getComponentId("Win32_BaseBoard", "SerialNumber");
+            hddModel = GetComponentId("Win32_DiskDrive", "Model");
+            hddManufacturer = GetComponentId("Win32_DiskDrive", "Manufacturer");
+            hddSerialNumber = GetComponentId("Win32_DiskDrive", "SerialNumber");
+            motherboardModel = GetComponentId("Win32_BaseBoard", "Model");
+            motherboardManufacturer = GetComponentId("Win32_BaseBoard", "Manufacturer");
+            motherboardNumber = GetComponentId("Win32_BaseBoard", "SerialNumber");
 
             hardwareId = hddModel + hddManufacturer + hddSerialNumber + motherboardModel + motherboardManufacturer +
                          motherboardNumber;
@@ -36,7 +36,7 @@ namespace EZLib
             }
         }
 
-        private static string getComponentId(string hwclass, string syntax)
+        private static string GetComponentId(string hwclass, string syntax)
         {
             var managementObjectSearcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM " + hwclass);
             foreach (ManagementObject managementObject in managementObjectSearcher.Get())
