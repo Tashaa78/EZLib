@@ -7,10 +7,8 @@ EZLib is a licensing system for the .NET Framework. This licensing system has lo
 * Developer web-based panel
 * Updater system
 * News/Blog system
-* Custom license generations
-* Secure server-sided variables
+* Server Variables
 * User Information
-* Security Tips
 
 ... and more features coming soon.
 
@@ -18,3 +16,7 @@ EZLib is a licensing system for the .NET Framework. This licensing system has lo
 ![](https://cdn-images-1.medium.com/max/230/1*OoXboCzk0gYvTNwNnV4S9A@2x.png)
 
 [Discord](https://discord.gg/UsHr2nv)
+
+__Credits__
+
+https://github.com/andrewdyer/slim3-authentication
