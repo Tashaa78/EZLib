@@ -30,7 +30,7 @@ namespace EZLib
             }
         }
 
-        public void SignIn(string username, string password)
+        public void Login(string username, string password)
         {
             // TODO: Begin working on this API
         }
@@ -42,8 +42,8 @@ namespace EZLib
         public const string ApiEndpoint = "http://localhost/api/";
 
         public const string InitializeProgramApi = "http://localohost/api/InitializeProgram";
-        public const string SignInApi = "http://localhost/api/SignIn";
-        public const string SignUpApi = "http://localhost/api/SignUp";
+        public const string LoginApi = "http://localhost/api/SignIn";
+        public const string RegisterApi = "http://localhost/api/SignUp";
         public const string LicenseCheck = "http://localhost/api/LicenseCheck";
 
         #endregion

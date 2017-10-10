@@ -1,6 +1,6 @@
 ﻿namespace EZLib
 {
-    public class EzLib
+    public class EZLib
     {
         private readonly System _system = new System();
 

@@ -60,12 +60,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cryptography.cs" />
+    <Compile Include="Security\Cryptography.cs" />
     <Compile Include="EZLib.cs" />
-    <Compile Include="HardwareId.cs" />
+    <Compile Include="Security\HardwareId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Response.cs" />
-    <Compile Include="System.cs" />
+    <Compile Include="Middleware\Response.cs" />
+    <Compile Include="Middleware\System.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />

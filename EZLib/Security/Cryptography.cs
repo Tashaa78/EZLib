@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EZLib
+namespace EZLib.Security
 {
     internal static class Cryptography
     {

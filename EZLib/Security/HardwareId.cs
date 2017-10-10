@@ -3,7 +3,7 @@ using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EZLib
+namespace EZLib.Security
 {
     internal class HardwareId
     {
