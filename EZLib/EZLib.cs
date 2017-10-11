@@ -2,7 +2,7 @@
 {
     public class EZLib
     {
-        private readonly System _system = new System();
+        private readonly Middleware.System _system = new Middleware.System();
 
         internal string MyUsername { get; }
         internal string MyIpAddress { get; }
@@ -16,7 +16,6 @@
             _system.InitializeProgram(programId);
             return _system.IsInitialized;
         }
-
 
         #region User Information
 
