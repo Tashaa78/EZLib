@@ -2,7 +2,7 @@
 {
     public class EZLib
     {
-        private readonly Middleware.System _system = new Middleware.System();
+        private readonly System _system = new System();
 
         internal string MyUsername { get; }
         internal string MyIpAddress { get; }
