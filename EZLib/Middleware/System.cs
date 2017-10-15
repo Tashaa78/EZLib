@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+
+using System.Windows.Forms;
 
 namespace EZLib
 {
@@ -59,15 +62,43 @@ namespace EZLib
         private void ValidateCertificate()
         {
             ServicePointManager.ServerCertificateValidationCallback = HpKp;
+            try
+            {
 
-            var request = WebRequest.Create("https://ezlib.rocks/");
-            request.Timeout = 10000;
+                var request = WebRequest.Create("https://ezlib.rocks/");
+                request.Timeout = 10000;
 
-            var response = request.GetResponse().Headers;
+                var response = request.GetResponse().Headers;
+
 
             if (response["SVR"] != "EZLib_Server")
             {
-                // TODO: Setup error messages for this and kill the process
+                
+                string message = "ERROR";
+                string caption = "Can't Validate Certificate Invalid Response Header(s)";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                
+                // Displays the MessageBox.
+
+                MessageBox.Show(message, caption, buttons);
+
+                Environment.Exit(500);
+
+            }
+            }
+            catch (WebException e) when (e.Status == WebExceptionStatus.Timeout)
+            {
+
+                string message = "ERROR";
+                string caption = "Can't Validate Certificate Response Timeout";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+
+                // Displays the MessageBox.
+
+                MessageBox.Show(message, caption, buttons);
+
+                Environment.Exit(408);
+
             }
         }
 
