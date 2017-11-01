@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EZLib")]
-[assembly: AssemblyDescription("A licensing system for .NET Framework")]
+[assembly: AssemblyDescription("A licensing system for the .NET Framework")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EZLib")]
 [assembly: AssemblyProduct("EZLib")]

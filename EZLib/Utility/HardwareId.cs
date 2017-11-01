@@ -3,7 +3,7 @@ using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EZLib.Security
+namespace EZLib.Utility
 {
     internal class HardwareId
     {
@@ -29,11 +29,15 @@ namespace EZLib.Security
 
             using (var sha256Managed = new SHA256Managed())
             {
-                var key = sha256Managed.ComputeHash(Encoding.ASCII.GetBytes("EZLIB_HWID"));
-                var iv = new byte[16]
-                    {0x8, 0x2, 0x7, 0x4, 0x55, 0x1, 0x6, 0x9, 0x4, 0x92, 0x90, 0x22, 0x65, 0x2, 0x9, 0x1};
+                var hashedHardwareId = Encoding.ASCII.GetBytes(hardwareId);
+                var hashValue = sha256Managed.ComputeHash(hashedHardwareId);
+                var hash = "";
 
-                return Cryptography.Encrypt(hardwareId, key, iv);
+                foreach (byte x in hashValue)
+                {
+                    hash += String.Format("{0:x2}", x);
+                }
+                return hash;
             }
         }
 

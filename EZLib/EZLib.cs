@@ -1,42 +1,169 @@
-﻿namespace EZLib
+﻿using System;
+
+namespace EZLib
 {
-    public class EZLib
+    public class EzLib
     {
-        private readonly System _system = new System();
+        internal static readonly EzLibSystem System = new EzLibSystem();
 
-        internal string MyUsername { get; }
-        internal string MyIpAddress { get; }
-        internal string MyLicenseKey { get; }
-        internal string MyHardwareId { get; }
+        #region Initialize Methods
 
-        public bool Initialize(string programId)
+        public void Initialize(string programId)
         {
-            if (programId == string.Empty)
-                return false;
-            _system.InitializeProgram(programId);
-            return _system.IsInitialized;
+            try
+            {
+                System.InitializeProgram(programId);
+            }
+            catch (Exception ex)
+            {
+                using (var exceptionForm = new Utility.exceptionForm(ex.GetType().Name, ex.Message, ex.StackTrace))
+                {
+                    exceptionForm.ShowDialog();
+                }
+            }
         }
+
+        public bool InitializeResponse()
+        {
+            return System.IsInitialized;
+        }
+
+        public string InitializeResponseReason()
+        {
+            return System.InitializedReason;
+        }
+
+        #endregion
+        #region Login Methods
+
+        public void Login(string username, string password)
+        {
+            try
+            {
+                System.Login(username, password);
+            }
+            catch (Exception ex)
+            {
+                using (var exceptionForm = new Utility.exceptionForm(ex.GetType().Name, ex.Message, ex.StackTrace))
+                {
+                    exceptionForm.ShowDialog();
+                }
+            }
+        }
+
+        public bool LoginResponse()
+        {
+            return System.IsLoggedIn;
+        }
+
+        public string LoginResponseReason()
+        {
+            return System.LoginReason;
+        }
+
+        #endregion
+        #region Register Methods
+
+        public void Register(string firstName, string lastName, string emailAddress, string username, string password)
+        {
+            try
+            {
+                System.Register(firstName, lastName, emailAddress, username, password);
+            }
+            catch (Exception ex)
+            {
+                using (var exceptionForm = new Utility.exceptionForm(ex.GetType().Name, ex.Message, ex.StackTrace))
+                {
+                    exceptionForm.ShowDialog();
+                }
+            }
+        }
+
+        public bool RegisterResponse()
+        {
+            return System.IsRegistered;
+        }
+
+        public string RegisterResponseReason()
+        {
+            return System.RegisterReason;
+        }
+
+        #endregion
+        #region License Methods
+
+        public void CheckLicense()
+        {
+            try
+            {
+                System.LicenseCheck();
+            }
+            catch (Exception ex)
+            {
+                using (var exceptionForm = new Utility.exceptionForm(ex.GetType().Name, ex.Message, ex.StackTrace))
+                {
+                    exceptionForm.ShowDialog();
+                }
+            }
+        }
+
+        public void RegisterLicense(string licenseKey)
+        {
+            try
+            {
+                System.RegisterLicense(licenseKey);
+            }
+            catch (Exception ex)
+            {
+                using (var exceptionForm = new Utility.exceptionForm(ex.GetType().Name, ex.Message, ex.StackTrace))
+                {
+                    exceptionForm.ShowDialog();
+                }
+            }
+        }
+
+        public bool IsLicensedResponse()
+        {
+            return System.IsLicensed;
+        }
+
+        public string LicenseResponseReason()
+        {
+            return System.LicenseReason;
+        }
+
+        #endregion
 
         #region User Information
 
         public string GetUsername()
         {
-            return MyUsername;
+            return System.MyUsername;
         }
 
         public string GetIpAddress()
         {
-            return MyIpAddress;
+            return System.MyIpAddress;
         }
 
         public string GetLicenseKey()
         {
-            return MyLicenseKey;
+            return System.MyLicenseKey;
+        }
+
+        public string GetExpirationDate()
+        {
+            return System.MyLicenseKeyExpiry;
         }
 
         public string GetHardwareId()
         {
-            return MyHardwareId;
+            return System.MyHardwareId;
+        }
+
+        public string GetSessionId()
+        {
+            return System.MySessionId;
         }
 
         #endregion

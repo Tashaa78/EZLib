@@ -55,17 +55,25 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Security\Cryptography.cs" />
     <Compile Include="EZLib.cs" />
-    <Compile Include="Security\HardwareId.cs" />
+    <Compile Include="Utility\exceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\exceptionForm.Designer.cs">
+      <DependentUpon>exceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\HardwareId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Middleware\Response.cs" />
-    <Compile Include="Middleware\System.cs" />
+    <Compile Include="System.cs" />
+    <Compile Include="Utility\HttpClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
@@ -73,6 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResources\Newtonsoft.Json.dll" />
+    <EmbeddedResource Include="Utility\exceptionForm.resx">
+      <DependentUpon>exceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
