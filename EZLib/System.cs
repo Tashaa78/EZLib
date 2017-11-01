@@ -192,11 +192,13 @@ namespace EZLib
 
         public const string ApiEndpoint = "https://ezlib.rocks/api";
 
-        public const string InitializeProgramApi = "https://ezlib.rocks/api/InitializeProgram";
-        public const string LoginApi = "https://ezlib.rocks/api/Login";
-        public const string RegisterApi = "https://ezlib.rocks/api/Register";
-        public const string LicenseCheckApi = "https://ezlib.rocks/api/LicenseCheck";
-        public const string RegisterLicenseApi = "https://ezlib.rocks/api/RegisterLicense";
+        
+        
+        public const string InitializeProgramApi = ApiEndpoint + "/InitializeProgram";
+        public const string LoginApi = ApiEndpoint + "/Login";
+        public const string RegisterApi = ApiEndpoint + "/Register";
+        public const string LicenseCheckApi = ApiEndpoint + "/LicenseCheck";
+        public const string RegisterLicenseApi = ApiEndpoint + "/RegisterLicense";
 
         #endregion
 
