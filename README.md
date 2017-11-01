@@ -12,13 +12,8 @@ EZLib is a licensing system for the .NET Framework. This licensing system has lo
 ### Credits
 * You (Thank you for being interested)
 * HackForums (The support honestly motivated me)
-* Codecourse (I seriously did not know anything about Slim)
 
 ### Links
 * https://ezlib.rocks
+* https://forums.ezlib.rocks
 * https://github.com/developer-variety/EZLib-PHP
-
-### Discord
-![](https://cdn-images-1.medium.com/max/230/1*OoXboCzk0gYvTNwNnV4S9A@2x.png)
-
-[Discord](https://discord.gg/UsHr2nv)
