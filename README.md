@@ -1,3 +1,6 @@
+## End of EZLib (Open Source Wise)
+EZLib has became a private licensing system (not paid). This repo will no longer be updated, you can see/use the latest updates the website.
+
 # EZLib
 EZLib is a licensing system for the .NET Framework. This licensing system has lots of features that are in other paid licensing systems for absolutely free.
 
