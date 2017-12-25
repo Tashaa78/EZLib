@@ -1,3 +1,6 @@
+## https://discord.gg/BDST2Hr (EZLib)
+
+
 ## End of EZLib (Open Source Wise)
 EZLib has became a private licensing system (not paid). This repo will no longer be updated, you can see/use the latest updates the website.
 
@@ -18,5 +21,4 @@ EZLib is a licensing system for the .NET Framework. This licensing system has lo
 
 ### Links
 * https://ezlib.rocks
-* https://forums.ezlib.rocks
 * https://github.com/developer-variety/EZLib-PHP
